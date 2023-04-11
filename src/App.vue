@@ -1,10 +1,17 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-</script>
-
 <template>
-  <RouterView />
+  <!--Динамический компонент-->
+  <component :is="layout">
+    <router-view/>
+  </component>
 </template>
 
-<style scoped>
-</style>
+<script>
+import { useRoute } from 'vue-router'
+export default {
+  setup() {
+    const route = useRoute()
+    const layout = route.meta.layout || 'default-layout'
+    return { layout }
+  }
+}
+</script>

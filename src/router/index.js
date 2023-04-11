@@ -12,26 +12,31 @@ const router = createRouter({
       path: '/',
       name: 'Main',
       component: Main,
+      meta: { layout: 'default-layout' }
     },
     {
       path: '/about',
       name: 'About',
       component: About,
+      meta: { layout: 'default-layout' }
     },
     {
       path: '/contacts',
       name: 'Contacts',
       component: Contacts,
+      meta: { layout: 'default-layout' }
     },
     {
       path: '/price',
       name: 'Price',
       component: Price,
+      meta: { layout: 'default-layout' }
     },
     {
       path: '/reviews',
       name: 'Reviews',
       component: Reviews,
+      meta: { layout: 'default-layout' }
     },
   ]
 })
