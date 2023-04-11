@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <section class="content">
-      <slot/>
-    </section>
-    <BottomMenu />
-  </div>
+  <section class="content">
+    <slot/>
+  </section>
+  <BottomMenu />
 </template>
 
 <script>

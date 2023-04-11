@@ -11,31 +11,31 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Main',
+      name: 'main',
       component: Main,
       meta: { layout: 'default-layout' }
     },
     {
       path: '/about',
-      name: 'About',
+      name: 'about',
       component: About,
       meta: { layout: 'default-layout' }
     },
     {
       path: '/contacts',
-      name: 'Contacts',
+      name: 'contacts',
       component: Contacts,
       meta: { layout: 'default-layout' }
     },
     {
       path: '/price',
-      name: 'Price',
+      name: 'price',
       component: Price,
       meta: { layout: 'default-layout' }
     },
     {
       path: '/reviews',
-      name: 'Reviews',
+      name: 'reviews',
       component: Reviews,
       meta: { layout: 'default-layout' }
     },
