@@ -53,7 +53,7 @@ export default {
       height: 20px;
     }
     &__active {
-      background-color: #FF7A00;
+      background-color: #c7b166;
       transition: all 4ms ease-in;
       //-webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
       //-moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
