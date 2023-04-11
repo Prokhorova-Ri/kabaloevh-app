@@ -1,12 +1,13 @@
 <template>
   <div class='menu'>
     <router-link
-      v-for="(item, index) in menu"
+      v-for="(item, index) in menuList"
       :key="index"
       :to="item.url"
+      :style="item.active ? 'color: black;' : 'color: white'"
       class="menu-item"
     >
-      <img  class="menu-item__image" :src='item.icon' />
+      <img class="menu-item__image menu-item__active" :src='item.icon' />
       {{ item.title }}
     </router-link>
   </div>
@@ -14,15 +15,15 @@
 
 <script>
 import useMenuList from '../../utils/BottomMenu/index.js';
-import { ref } from 'vue';
 export default {
   name: 'index',
   setup() {
 
-    const { getBottomListMenu } = useMenuList()
-    const menu = ref(getBottomListMenu())
+    const { menuList } = useMenuList()
 
-    return { menu }
+    return {
+      menuList
+    }
   }
 }
 </script>
@@ -49,6 +50,9 @@ export default {
       &__image {
         width: 24px;
         height: 24px;
+      }
+      &__active {
+        fill: black
       }
     }
   }
