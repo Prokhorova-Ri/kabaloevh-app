@@ -3,11 +3,14 @@
   <form class="home_form">
     <h2 class="home_form__title">Расчитать стоимость</h2>
   </form>
+  <Button text='Получить скидку' />
 </template>
 
 <script>
+import Button from '../components/Universal/Button.vue'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: { Button },
 }
 </script>
 
