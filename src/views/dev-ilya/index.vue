@@ -1,5 +1,5 @@
 <template>
-  <LeafletMap id='contacts'/>
+  <LeafletMap id="contacts" />
 </template>
 
 <script>
@@ -10,6 +10,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
