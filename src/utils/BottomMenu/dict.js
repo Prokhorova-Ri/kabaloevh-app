@@ -2,31 +2,31 @@ const menu = [
   {
     title: 'Главная',
     url: '/',
-    icon: null,
+    icon: '/src/assets/images/icons/house.svg',
     active: true
   },
   {
     title: 'Прайс',
     url: '/price',
-    icon: null,
+    icon: '/src/assets/images/icons/price.svg',
     active: false
   },
   {
     title: 'Отзывы',
     url: '/reviews',
-    icon: null,
+    icon: '/src/assets/images/icons/reviews.svg',
     active: false
   },
   {
     title: 'Контакты',
     url: '/contacts',
-    icon: null,
+    icon: '/src/assets/images/icons/contacts.svg',
     active: false
   },
   {
     title: 'О нас',
     url: '/about',
-    icon: null,
+    icon: '/src/assets/images/icons/about.svg',
     active: false
   }
 ]
