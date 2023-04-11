@@ -1,7 +1,7 @@
 <template>
-  <h2 class='home'>Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
-  <form class='home_form'>
-    <h2 class='home_form__title'>Расчитать стоимость</h2>
+  <h2 class="home">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
+  <form class="home_form">
+    <h2 class="home_form__title">Расчитать стоимость</h2>
   </form>
 </template>
 
@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .home {
   margin: 0 auto;
   padding: 40px 17px 0 17px;
@@ -24,5 +24,4 @@ export default {
     width: 340px;
   }
 }
-
 </style>

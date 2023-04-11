@@ -1,13 +1,17 @@
 <template>
-  <div :id="`map-container-${id}`" class="map-container" :style="`border-radius: ${borderRadius}`"></div>
+  <div
+    :id="`map-container-${id}`"
+    class="map-container"
+    :style="`border-radius: ${borderRadius}`"
+  ></div>
 </template>
 
 <script>
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import 'leaflet/dist/leaflet.css'
+import L from 'leaflet'
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
 export default {
-  name: "index",
+  name: 'index',
   props: {
     borderRadius: {
       type: String,
@@ -19,36 +23,38 @@ export default {
     },
     coordinates: {
       type: [Array, Object],
-      default: () => [59.704574, 30.786810]
+      default: () => [59.704574, 30.78681]
     },
     zoom: {
       type: Number,
       default: 20
     }
   },
-  setup (props) {
+  setup(props) {
     const map = ref()
     const setParamsMap = () => {
       console.log('props?.zoom', props?.zoom)
-      map.value = L.map(`map-container-${props.id}`).setView(props?.coordinates, 14);
-      L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map.value);
-      L.marker([59.704574, 30.786810]).addTo(map.value);
+      map.value = L.map(`map-container-${props.id}`).setView(props?.coordinates, 14)
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map.value)
+      L.marker([59.704574, 30.78681]).addTo(map.value)
     }
     onMounted(() => {
       setParamsMap()
     })
     onBeforeUnmount(() => {
       if (map.value) {
-        map.value.remove();
+        map.value.remove()
       }
     })
-    watch(() => props.coordinates, () => {
-      map.value.remove();
-      setParamsMap()
-    })
+    watch(
+      () => props.coordinates,
+      () => {
+        map.value.remove()
+        setParamsMap()
+      }
+    )
     return { map }
   }
 }

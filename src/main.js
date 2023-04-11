@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 import DefaultLayout from './layouts/default.vue'
 
-import "/src/assets/global.scss"
+import '/src/assets/global.scss'
 
 const app = createApp(App)
 
