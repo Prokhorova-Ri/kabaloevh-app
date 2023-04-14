@@ -1,5 +1,9 @@
 <template>
-  <button @click='onClick' class='button'>
+  <button
+    class='button'
+    :style="`margin: ${margin}`"
+    @click='onClick'
+  >
     {{ text }}
   </button>
 </template>
@@ -12,6 +16,10 @@ export default {
     text: {
       type: String,
       default: 'Передайте текст'
+    },
+    margin: {
+      type: String,
+      default: '18px 0'
     }
   },
   setup(props, context) {

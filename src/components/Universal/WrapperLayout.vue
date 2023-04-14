@@ -1,23 +1,78 @@
 <template>
   <div
     class='wrapper-layout'
-    :style="'background: #green'"
+    :style="
+    `height: ${height}px;
+    border-radius: ${borderRadius};
+    background-color: ${backgroundColor};
+    padding: ${padding}
+    `
+    "
   >
-
+    <slot name='content' />
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 export default defineComponent({
   name: 'WrapperLayout',
-  setup () {
+  props: {
+    classListForHeight: {
+      type: Array,
+      default: () => ([])
+    },
+    borderRadius: {
+      type: String,
+      default: ''
+    },
+    backgroundColor: {
+      type: String,
+      default: ''
+    },
+    padding: {
+      type: String,
+      default: ''
+    }
+  },
+  setup (props) {
+    const height = ref(0)
+    const innerHeight = ref(window.innerHeight)
 
-    return {}
+    const createSummHeightElements = () => {
+      let elements = []
+      props.classListForHeight.forEach((item) => {
+        console.log('item', typeof item)
+        if (typeof item === 'number') {
+          elements = [...elements, item]
+        } else {
+        const element = document.querySelector(`.${item}`)
+        const styles = getComputedStyle(element);
+        elements = [
+          ...elements,
+          element.offsetHeight,
+          parseInt(styles.marginTop),
+          parseInt(styles.marginBottom)
+        ]
+        }
+      })
+      const sumOffsetHeight = elements.reduce((accumulator, currentValue) => accumulator + currentValue);
+      height.value = innerHeight.value - sumOffsetHeight
+      console.log('sumOffsetHeight', sumOffsetHeight)
+    }
+
+    onMounted(() => {
+      createSummHeightElements()
+    })
+
+
+    return { height }
   }
 })
 </script>
 
 <style lang='scss' scoped>
-  .wrapper-layout {}
+  .wrapper-layout {
+    overflow-y: scroll;
+  }
 </style>

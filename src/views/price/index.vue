@@ -1,7 +1,16 @@
 <template>
   <div class='price'>
     <h1 class='price-title'>Прайс</h1>
-    <WrapperLayout />
+    <WrapperLayout
+      :class-list-for-height="['price-title', 'button', 'menu']"
+      background-color='#32956B'
+      border-radius='10px'
+      padding='12px 16px'
+    >
+      <template #content>
+        TODO Layout price
+      </template>
+    </WrapperLayout>
     <Button text='Оставить заявку' @onClickButton='test'/>
   </div>
 </template>
@@ -23,4 +32,14 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang='scss' scoped>
+  .price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    &-title {
+      margin: 20px 0;
+      text-align: center;
+    }
+  }
+</style>

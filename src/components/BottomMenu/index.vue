@@ -1,5 +1,8 @@
 <template>
-  <div class="menu">
+  <div
+    class="menu"
+    :style="`grid-template-columns: ${menuList.length}fr`"
+  >
     <div
       v-for="(item, index) in menuList"
       :key="index"

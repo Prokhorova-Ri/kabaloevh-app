@@ -1,16 +1,32 @@
 <template>
-  <div>
-    TODO LAYOUT REVIEWS
-    <Button text='Отправить отзыв' />
-  </div>
+  <h1 class='reviews-title'>Отзывы</h1>
+  <WrapperLayout
+    :class-list-for-height="['reviews-title', 'button', 'menu']"
+    background-color='#32956B'
+    border-radius='10px'
+    padding='12px 16px'
+  >
+    <template #content>
+      TODO Layout reviews
+    </template>
+  </WrapperLayout>
+  <Button text='Отправить отзыв' />
 </template>
 
 <script>
 import Button from '../../components/Universal/Button.vue'
+import WrapperLayout from '../../components/Universal/WrapperLayout.vue'
 export default {
   name: 'index',
-  components: { Button },
+  components: { WrapperLayout, Button },
 }
 </script>
 
-<style scoped></style>
+<style lang='scss' scoped>
+  .reviews {
+    &-title {
+      margin: 20px 0;
+      text-align: center;
+    }
+  }
+</style>

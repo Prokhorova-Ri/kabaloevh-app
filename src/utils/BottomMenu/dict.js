@@ -22,12 +22,6 @@ const menu = [
     url: '/contacts',
     icon: '/src/assets/images/icons/contacts.svg',
     active: false
-  },
-  {
-    title: 'О нас',
-    url: '/about',
-    icon: '/src/assets/images/icons/about.svg',
-    active: false
   }
 ]
 
