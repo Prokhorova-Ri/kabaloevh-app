@@ -3,7 +3,7 @@
     <h1 class='price-title'>Прайс</h1>
     <WrapperLayout
       :class-list-for-height="['price-title', 'button', 'menu']"
-      background-color='#32956B'
+      background-color='transparent'
       border-radius='10px'
       padding='15px 16px'
       display='flex'
@@ -93,6 +93,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "./src/assets/sass/variables.scss";
   .price {
     display: flex;
     flex-direction: column;

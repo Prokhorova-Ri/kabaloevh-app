@@ -8,4 +8,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang='scss' scoped>
+@import "./src/assets/sass/variables.scss";
+</style>

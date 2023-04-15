@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "./src/assets/sass/variables.scss";
   .contacts {
     &-title {
       margin: 20px 0 20px 0;
@@ -66,23 +67,19 @@ export default {
     }
     &-content {
       &-work {
-        background-color: #32956B;
-        padding: 9px 16px;
+        background-color: transparent;
         border-radius: 10px;
         margin: 0 0 40px 0;
         &-title {
-          text-align: center;
-          color: white;
-          font-size: 16px;
+          font-size: 18px;
           margin: 0 0 10px 0;
         }
         &-item {
-          color: white;
           display: flex;
           justify-content: space-between;
           align-items: center;
           &-hour {
-            font-size: 14px;
+            font-size: 16px;
             &-layout {
               display: flex;
               align-items: center;

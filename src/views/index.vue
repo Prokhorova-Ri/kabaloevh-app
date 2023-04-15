@@ -1,5 +1,5 @@
 <template>
-  <h2 class="home-title">Приветствуем вас в приложении "Мобильный шиномонтаж Кабалоев"!</h2>
+  <h2 class="home-title">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
   <WrapperLayout
     :class-list-for-height="['home-title', 'button', 'menu']"
     background-color='transparent'

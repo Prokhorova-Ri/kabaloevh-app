@@ -19,7 +19,7 @@ export default {
     },
     margin: {
       type: String,
-      default: '18px 0'
+      default: '30px 0'
     }
   },
   setup(props, context) {
@@ -34,11 +34,13 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "./src/assets/sass/variables.scss";
   .button {
+    border: none;
     width: 100%;
     padding: 13px 0;
-    background: #E5DDC9;
-    border: 2px solid #FF7A00;
+    background: $btnbg;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     font-weight: 600;
     font-size: 20px;
