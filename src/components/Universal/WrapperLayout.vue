@@ -6,7 +6,6 @@
     border-radius: ${borderRadius};
     background-color: ${backgroundColor};
     padding: ${padding};
-    display: ${display}
     `
     "
   >
@@ -26,10 +25,6 @@ export default defineComponent({
     borderRadius: {
       type: String,
       default: ''
-    },
-    display: {
-      type: String,
-      default: 'block'
     },
     backgroundColor: {
       type: String,
@@ -70,7 +65,6 @@ export default defineComponent({
       createSummHeightElements()
     })
 
-
     return { height }
   }
 })
@@ -78,8 +72,8 @@ export default defineComponent({
 
 <style lang='scss' scoped>
   .wrapper-layout {
+    min-height: 95%;
     overflow-y: scroll;
     flex-direction: column;
-    justify-content: space-around;
   }
 </style>
