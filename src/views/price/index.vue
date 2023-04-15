@@ -10,7 +10,7 @@
     >
       <template #content>
         <div
-          v-for='item in dict'
+          v-for='item in dictPrice'
           :key='item.id'
           class='price-city'>
           <p class='price-city-name'>{{ item.city }}</p>
@@ -40,54 +40,17 @@
 <script>
 import Button from '../../components/Universal/Button.vue'
 import WrapperLayout from '../../components/Universal/WrapperLayout.vue'
-import { reactive } from 'vue'
+import usePriceFilter from '../../../src/utils/FiltersCore/index.js'
+import { ref } from 'vue'
 export default {
   name: 'index',
   components: { WrapperLayout, Button },
   setup() {
+    const dictPrice = ref([])
+    const { dict } = usePriceFilter()
+    dictPrice.value = dict
 
-    const dict = reactive([
-      {
-        id: 0,
-        city: 'Цены по городу Никольское:',
-        type: [
-          {
-            title: 'Сезонная замена 4x колес',
-            tires: [
-              { size: 'R-13', price: '1000' },
-              { size: 'R-14', price: '1200' },
-              { size: 'R-15', price: '1300' },
-              { size: 'R-16', price: '1400' },
-              { size: 'R-17', price: '1800' },
-              { size: 'R-18', price: '1900' },
-              { size: 'R-19', price: '2000' },
-              { size: 'R-20', price: '2200' },
-            ]
-          }
-        ]
-      },
-      {
-        id: 1,
-        city: 'Цены по Лен.Области:',
-        type: [
-          {
-            title: 'Сезонная замена 4x колес',
-            tires: [
-              { size: 'R-13', price: '1500' },
-              { size: 'R-14', price: '1700' },
-              { size: 'R-15', price: '1800' },
-              { size: 'R-16', price: '1900' },
-              { size: 'R-17', price: '2200' },
-              { size: 'R-18', price: '2400' },
-              { size: 'R-19', price: '2500' },
-              { size: 'R-20', price: '2700' },
-            ]
-          }
-        ]
-      }
-    ])
-
-    return { dict }
+    return { dictPrice }
   }
 }
 </script>
