@@ -33,6 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./src/assets/sass/variables.scss";
 .menu {
   display: grid;
   position: absolute;
@@ -40,10 +41,10 @@ export default {
   left: 0;
   right: 0;
   width: 100%;
-  background: rgba(50, 149, 107, 0.8);
+  background: $darkpurple;
   &-item {
     padding: 9px 10px;
-    color: white;
+    color: $white;
     font-size: 12px;
     text-decoration: none;
     display: flex;
@@ -55,7 +56,7 @@ export default {
       height: 20px;
     }
     &__active {
-      background-color: #c7b166;
+      background-color: $purple;
       transition: all 4ms ease-in;
       //-webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
       //-moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
