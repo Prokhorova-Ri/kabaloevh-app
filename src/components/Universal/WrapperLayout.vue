@@ -5,7 +5,8 @@
     `height: ${height}px;
     border-radius: ${borderRadius};
     background-color: ${backgroundColor};
-    padding: ${padding}
+    padding: ${padding};
+    display: ${display}
     `
     "
   >
@@ -25,6 +26,10 @@ export default defineComponent({
     borderRadius: {
       type: String,
       default: ''
+    },
+    display: {
+      type: String,
+      default: 'block'
     },
     backgroundColor: {
       type: String,
@@ -74,5 +79,7 @@ export default defineComponent({
 <style lang='scss' scoped>
   .wrapper-layout {
     overflow-y: scroll;
+    flex-direction: column;
+    justify-content: space-around;
   }
 </style>
