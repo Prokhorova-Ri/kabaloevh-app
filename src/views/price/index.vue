@@ -5,7 +5,8 @@
       :class-list-for-height="['price-title', 'button', 'menu']"
       background-color='#32956B'
       border-radius='10px'
-      padding='12px 16px'
+      padding='15px 16px'
+      display='flex'
     >
       <template #content>
         <div
@@ -53,6 +54,25 @@ export default {
           {
             title: 'Сезонная замена 4x колес',
             tires: [
+              { size: 'R-13', price: '1000' },
+              { size: 'R-14', price: '1200' },
+              { size: 'R-15', price: '1300' },
+              { size: 'R-16', price: '1400' },
+              { size: 'R-17', price: '1800' },
+              { size: 'R-18', price: '1900' },
+              { size: 'R-19', price: '2000' },
+              { size: 'R-20', price: '2200' },
+            ]
+          }
+        ]
+      },
+      {
+        id: 1,
+        city: 'Цены по Лен.Области:',
+        type: [
+          {
+            title: 'Сезонная замена 4x колес',
+            tires: [
               { size: 'R-13', price: '1500' },
               { size: 'R-14', price: '1700' },
               { size: 'R-15', price: '1800' },
@@ -64,10 +84,6 @@ export default {
             ]
           }
         ]
-      },
-      { id: 0,
-        city: 'Цены по Ленинградской области:',
-        type: []
       }
     ])
 
@@ -105,11 +121,14 @@ export default {
           &-layout {
             display: flex;
             justify-content: space-between;
+            margin: 0 0 9px 0;
+            &:last-child {
+              margin: 0 0 0 0;
+            }
           }
           &-item {
             font-weight: 600;
             font-size: 14px;
-            margin: 0 0 9px 0;
             &:last-child {
               margin: 0 0 0 0;
             }
