@@ -52,13 +52,6 @@ export default {
         map.value.remove()
       }
     })
-    watch(
-      () => props.coordinates,
-      () => {
-        map.value.remove()
-        setParamsMap()
-      }
-    )
     return { map }
   }
 }
@@ -67,6 +60,10 @@ export default {
 .map-container {
   bottom: 20px;
 }
+//.map-container > * {
+//  width: inherit;
+//}
+
 .leaflet-bottom {
   display: none;
 }

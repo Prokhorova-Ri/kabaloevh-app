@@ -35,14 +35,14 @@ export default defineComponent({
       default: ''
     }
   },
-  setup (props) {
+  emits: ['updateHeight'],
+  setup (props, context) {
     const height = ref(0)
     const innerHeight = ref(window.innerHeight)
 
     const createSummHeightElements = () => {
       let elements = []
       props.classListForHeight.forEach((item) => {
-        console.log('item', typeof item)
         if (typeof item === 'number') {
           elements = [...elements, item]
         } else {
@@ -58,7 +58,7 @@ export default defineComponent({
       })
       const sumOffsetHeight = elements.reduce((accumulator, currentValue) => accumulator + currentValue);
       height.value = innerHeight.value - sumOffsetHeight
-      console.log('sumOffsetHeight', sumOffsetHeight)
+      context.emit('updateHeight', height.value)
     }
 
     onMounted(() => {
