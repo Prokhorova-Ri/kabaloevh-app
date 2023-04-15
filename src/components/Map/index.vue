@@ -2,7 +2,7 @@
   <div
     :id="`map-container-${id}`"
     class="map-container"
-    :style="`border-radius: ${borderRadius}`"
+    :style="`border-radius: ${borderRadius};height: ${height}`"
   ></div>
 </template>
 
@@ -14,6 +14,10 @@ export default {
   name: 'index',
   props: {
     borderRadius: {
+      type: String,
+      default: '0px'
+    },
+    height: {
       type: String,
       default: '0px'
     },
@@ -59,15 +63,11 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang='scss'>
 .map-container {
-  position: absolute;
   bottom: 20px;
-  border-radius: 20px;
-  width: 333px;
-  height: 240px;
 }
-.map-container > * {
-  width: inherit;
+.leaflet-bottom {
+  display: none;
 }
 </style>
