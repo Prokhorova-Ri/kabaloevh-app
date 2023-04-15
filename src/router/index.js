@@ -16,18 +16,6 @@ const router = createRouter({
       meta: { layout: 'default-layout' }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About,
-      meta: { layout: 'default-layout' }
-    },
-    {
-      path: '/contacts',
-      name: 'contacts',
-      component: Contacts,
-      meta: { layout: 'default-layout' }
-    },
-    {
       path: '/price',
       name: 'price',
       component: Price,
@@ -37,6 +25,12 @@ const router = createRouter({
       path: '/reviews',
       name: 'reviews',
       component: Reviews,
+      meta: { layout: 'default-layout' }
+    },
+    {
+      path: '/contacts',
+      name: 'contacts',
+      component: Contacts,
       meta: { layout: 'default-layout' }
     },
     {

@@ -1,9 +1,9 @@
 <template>
-  <h2 class="home-title">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
+  <h2 class="home-title">Приветствуем вас в приложении "Мобильный шиномонтаж Кабалоев"!</h2>
   <WrapperLayout
     :class-list-for-height="['home-title', 'button', 'menu']"
-    background-color='#32956B'
-    border-radius='10px'
+    background-color='transparent'
+    border-radius='0'
     padding='12px 16px'
   >
     <template #content>

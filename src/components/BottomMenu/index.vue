@@ -1,7 +1,7 @@
 <template>
   <div
     class="menu"
-    :style="`grid-template-columns: ${menuList.length}fr`"
+    :style="`grid-template-columns: repeat(${menuList.length}, 1fr)`"
   >
     <div
       v-for="(item, index) in menuList"
@@ -35,7 +35,6 @@ export default {
 <style lang="scss" scoped>
 .menu {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   position: absolute;
   bottom: 0;
   left: 0;
