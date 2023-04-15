@@ -59,6 +59,7 @@ export default {
 <style lang='scss'>
 .map-container {
   bottom: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 //.map-container > * {
 //  width: inherit;

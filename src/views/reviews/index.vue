@@ -2,7 +2,7 @@
   <h1 class='reviews-title'>Отзывы</h1>
   <WrapperLayout
     :class-list-for-height="['reviews-title', 'button', 'menu']"
-    background-color='#32956B'
+    background-color='transparent'
     border-radius='10px'
     padding='12px 16px'
   >
@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "./src/assets/sass/variables.scss";
   .reviews {
     &-title {
       margin: 20px 0;

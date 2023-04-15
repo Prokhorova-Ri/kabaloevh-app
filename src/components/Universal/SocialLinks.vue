@@ -22,10 +22,10 @@ export default defineComponent({
   setup() {
 
     const dict = reactive([
-      { id: 0, link: 'https://vk.com/kabaloevt', image: 'src/assets/images/icons/social/vk.svg'},
-      { id: 1, link: 'https://wa.me/79118293155', image: 'src/assets/images/icons/social/whatsapp.svg'},
-      { id: 2, link: 'https://t.me/+79118293155', image: 'src/assets/images/icons/social/telegram.svg'},
-      { id: 3, link: '+79118293155', image: 'src/assets/images/icons/social/telephone-call.svg'},
+      { id: 0, link: 'https://vk.com/kabaloevt', image: 'src/assets/images/icons/social/vk.png'},
+      { id: 1, link: 'https://wa.me/79118293155', image: 'src/assets/images/icons/social/whatsapp.png'},
+      { id: 2, link: 'https://t.me/+79118293155', image: 'src/assets/images/icons/social/telegram.png'},
+      { id: 3, link: '+79118293155', image: 'src/assets/images/icons/social/telephone.png'},
     ])
 
     return { dict }
@@ -34,6 +34,7 @@ export default defineComponent({
 </script>
 
 <style lang='scss' scoped>
+@import "./src/assets/sass/variables.scss";
   .social {
     &-links {
       display: flex;
@@ -44,8 +45,9 @@ export default defineComponent({
         align-items: center;
         width: 70px;
         height: 70px;
-        background-color: #32956B;
+        background-color: $btnbg;
         border-radius: 10px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
       }
     }
   }

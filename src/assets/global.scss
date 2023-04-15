@@ -1,11 +1,13 @@
+@import "./src/assets/sass/variables.scss";
 * {
   margin: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   font-size: 20px;
+  color: $text;
 }
 
 body {
-  background-color: #FFF9E6;
+  background-image: url("./src/assets/images/bg.jpg");
   padding: 0 15px;
 }
