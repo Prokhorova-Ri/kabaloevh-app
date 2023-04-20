@@ -4,16 +4,27 @@
     :class-list-for-height="['home-title', 'button', 'menu']"
     background-color='transparent'
     border-radius='0'
-    padding='12px 16px'
   >
     <template #content>
       <div class='home-filter'>
         <p class='home-filter-title'>Расчитать стоимость</p>
         <div class='home-filter-input'>
+          {{ filterParamsFromDict }}
           <VSelect
-            v-model="selectFilter"
-            :options='test'
-            label="Выберете ваш город" />
+            :options='filterParamsFromDict.cites'
+            :placeholder="selectedCite"
+            @option:selected="setParamsFromInput"
+          />
+<!--          <VSelect-->
+<!--            v-if='filterParamsFromDict.typeTitle.length > 0'-->
+<!--            :options='filterParamsFromDict.typeTitle[0].title'-->
+<!--            :placeholder="filterParamsFromDict.typeTitle[0].title"-->
+<!--            @option:selected="setParamsFromInput"-->
+<!--          />-->
+<!--          <VSelect-->
+<!--            :options='filterParamsFromDict.typeTires'-->
+<!--            :placeholder="filterParamsFromDict.typeTires[0]"-->
+<!--          />-->
         </div>
         <div>
           Рассчет стоимости:
@@ -39,17 +50,32 @@
 import Button from '../components/Universal/Button.vue'
 import WrapperLayout from '../components/Universal/WrapperLayout.vue'
 import usePriceFilter from '../../src/utils/FiltersCore/index.js'
-import { ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 export default {
   name: 'Home',
   components: { WrapperLayout, Button },
   setup() {
     const filter = usePriceFilter()
-    const selectFilter = ref()
-    const test = ref(filter.getCitysFromData())
-    const getSelectCity = filter.getCityFromCode('nikolskoe')
-    selectFilter.value = getSelectCity.name
-    return { selectFilter, test }
+    const { filterParamsFromDict, selectedCite, getFirstFilterForCity, setNewParamsFilterForCity } = filter
+
+    const setParamsFromInput = (params) => {
+      setNewParamsFilterForCity(params)
+    }
+
+    onMounted(() => {
+      getFirstFilterForCity()
+    })
+
+    watch(() => filterParamsFromDict.anotherCite, (newVa) => {
+      console.log('new', newVa)
+    })
+
+    return {
+      selectedCite,
+      filterParamsFromDict,
+      setParamsFromInput,
+      setNewParamsFilterForCity
+    }
   }
 }
 </script>
