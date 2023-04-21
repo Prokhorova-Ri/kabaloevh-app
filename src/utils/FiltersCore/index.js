@@ -1,48 +1,76 @@
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import dictPrice from './dict.js'
 
 export default function usePriceFilter() {
   const dict = ref(dictPrice) || []
-  const selectedCite = ref('г.Никольское')
+  const selectCite = ref('')
+  const selectTypeTitle = ref('')
+  const selectTypeTyres = ref('')
+  const selectPrice = ref('')
   const filterParamsFromDict = reactive({
     cites: [],
     typeTitle: [],
-    typeTires: [],
-    anotherCite: []
+    typeTires: []
   })
 
 
   const getFirstFilterForCity = (city = 'г.Никольское') => {
     dict.value.forEach((item) => {
+      selectCite.value = dict.value[0].name
       filterParamsFromDict.cites = [...filterParamsFromDict.cites, item.name]
       if (city === item.name) {
         item.type.forEach((type) => {
-          filterParamsFromDict.typeTitle = [...filterParamsFromDict.typeTitle, { title: type.title, code: city }]
+          selectTypeTitle.value = item.type[0].title
+          filterParamsFromDict.typeTitle = [...filterParamsFromDict.typeTitle, type.title]
           type.tires.forEach((tires) => {
+            selectTypeTyres.value = type.tires[0].size
+            selectPrice.value = type.tires[0].price
             filterParamsFromDict.typeTires = [...filterParamsFromDict.typeTires, tires.size]
           })
         })
-      } else {
-        filterParamsFromDict.anotherCite = item
       }
     })
   }
 
-  //ПЕРЕПИСАТЬ ЕСЛИ БУДЕТ МАССИВ ГОРОДОВ
-  const setNewParamsFilterForCity = (params) => {
-    if (filterParamsFromDict.anotherCite.name === params) {
-      filterParamsFromDict.anotherCite = dict.value.find((item) => item.name !== params)
-    } else {
-      console.log('есть')
-    }
-    console.log('filterParamsFromDict.anotherCite', filterParamsFromDict.anotherCite)
+  // ФИЛЬТРУЕМ ТИПЫ УСЛУГ
+  const setNewParamsFilterForType = (params) => {
+    selectCite.value = params
+    filterParamsFromDict.typeTitle = dict.value
+      .filter((city) => city.name === selectCite.value)
+      .map((city) => city.type.map((type) => {
+        selectTypeTitle.value = city.type[0].title
+        return type.title
+      }))
+      .flat()
+      .filter((title) => title !== undefined)
+  }
+
+  // ФИЛЬТРУЕМ ТИПЫ ШИН ПОСЛЕ ВЫБРАНОГО ТИП УСЛУГ
+  const setNewParamsFilterForTyres = (params) => {
+    filterParamsFromDict.typeTires = dict.value
+      .filter((city) => city.name === selectCite.value)
+      .map((city) => {
+        const selectedType = city.type.find((type) => type.title === params)
+        selectTypeTyres.value = selectedType.title
+        console.log('selectedType', selectedType)
+        if (selectedType) {
+          return selectedType.tires.map((tires) => tires.size)
+        }
+        return []
+      })
+      .flat()
+      .filter((title) => title !== undefined)
   }
 
   return {
     dict: dict.value,
     filterParamsFromDict,
-    selectedCite,
+    selectCite,
+    selectTypeTitle: computed(() => selectTypeTitle.value),
+    selectTypeTyres,
+    selectPrice,
     getFirstFilterForCity,
-    setNewParamsFilterForCity
+    setNewParamsFilterForType,
+    setNewParamsFilterForTyres
   }
 }

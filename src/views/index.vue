@@ -9,25 +9,24 @@
       <div class='home-filter'>
         <p class='home-filter-title'>Расчитать стоимость</p>
         <div class='home-filter-input'>
-          {{ filterParamsFromDict }}
+<!--          {{ filterParamsFromDict }}-->
           <VSelect
             :options='filterParamsFromDict.cites'
-            :placeholder="selectedCite"
-            @option:selected="setParamsFromInput"
+            :placeholder="selectCite"
+            @option:selected="setNewParamsFilterForType"
           />
-<!--          <VSelect-->
-<!--            v-if='filterParamsFromDict.typeTitle.length > 0'-->
-<!--            :options='filterParamsFromDict.typeTitle[0].title'-->
-<!--            :placeholder="filterParamsFromDict.typeTitle[0].title"-->
-<!--            @option:selected="setParamsFromInput"-->
-<!--          />-->
-<!--          <VSelect-->
-<!--            :options='filterParamsFromDict.typeTires'-->
-<!--            :placeholder="filterParamsFromDict.typeTires[0]"-->
-<!--          />-->
+          <VSelect
+            :options='filterParamsFromDict.typeTitle'
+            :placeholder="selectTypeTitle"
+            @option:selected="setNewParamsFilterForTyres"
+          />
+          <VSelect
+            :placeholder="selectTypeTyres"
+            :options='filterParamsFromDict.typeTires'
+          />
         </div>
         <div>
-          Рассчет стоимости:
+          Рассчет стоимости: {{ selectPrice }} руб
         </div>
       </div>
       <div class='home-offer'>
@@ -56,25 +55,30 @@ export default {
   components: { WrapperLayout, Button },
   setup() {
     const filter = usePriceFilter()
-    const { filterParamsFromDict, selectedCite, getFirstFilterForCity, setNewParamsFilterForCity } = filter
-
-    const setParamsFromInput = (params) => {
-      setNewParamsFilterForCity(params)
-    }
+    const {
+      filterParamsFromDict,
+      selectCite,
+      selectTypeTitle,
+      selectTypeTyres,
+      selectPrice,
+      getFirstFilterForCity,
+      setNewParamsFilterForType,
+      setNewParamsFilterForTyres
+    } = filter
 
     onMounted(() => {
       getFirstFilterForCity()
     })
 
-    watch(() => filterParamsFromDict.anotherCite, (newVa) => {
-      console.log('new', newVa)
-    })
 
     return {
-      selectedCite,
+      selectCite,
+      selectTypeTitle,
+      selectTypeTyres,
+      selectPrice,
       filterParamsFromDict,
-      setParamsFromInput,
-      setNewParamsFilterForCity
+      setNewParamsFilterForType,
+      setNewParamsFilterForTyres
     }
   }
 }
