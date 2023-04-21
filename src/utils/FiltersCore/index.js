@@ -3,10 +3,14 @@ import dictPrice from './dict.js'
 
 export default function usePriceFilter() {
   const dict = ref(dictPrice) || []
-  const selectCite = ref('')
-  const selectTypeTitle = ref('')
-  const selectTypeTyres = ref('')
-  const selectPrice = ref('')
+
+  const select = reactive({
+    city: '',
+    service: '',
+    tyres: '',
+    price: ''
+  })
+
   const filterParamsFromDict = reactive({
     cites: [],
     typeTitle: [],
@@ -16,15 +20,15 @@ export default function usePriceFilter() {
 
   const getFirstFilterForCity = (city = 'г.Никольское') => {
     dict.value.forEach((item) => {
-      selectCite.value = dict.value[0].name
+      select.city = dict.value[0].name
       filterParamsFromDict.cites = [...filterParamsFromDict.cites, item.name]
       if (city === item.name) {
         item.type.forEach((type) => {
-          selectTypeTitle.value = item.type[0].title
+          select.service = item.type[0].title
           filterParamsFromDict.typeTitle = [...filterParamsFromDict.typeTitle, type.title]
           type.tires.forEach((tires) => {
-            selectTypeTyres.value = type.tires[0].size
-            selectPrice.value = type.tires[0].price
+            select.tyres = type.tires[0].size
+            select.price = type.tires[0].price
             filterParamsFromDict.typeTires = [...filterParamsFromDict.typeTires, tires.size]
           })
         })
@@ -34,11 +38,11 @@ export default function usePriceFilter() {
 
   // ФИЛЬТРУЕМ ТИПЫ УСЛУГ
   const setNewParamsFilterForType = (params) => {
-    selectCite.value = params
+    select.city = params
     filterParamsFromDict.typeTitle = dict.value
-      .filter((city) => city.name === selectCite.value)
+      .filter((city) => city.name === select.city)
       .map((city) => city.type.map((type) => {
-        selectTypeTitle.value = city.type[0].title
+        select.service = city.type[0].title
         return type.title
       }))
       .flat()
@@ -48,10 +52,10 @@ export default function usePriceFilter() {
   // ФИЛЬТРУЕМ ТИПЫ ШИН ПОСЛЕ ВЫБРАНОГО ТИП УСЛУГ
   const setNewParamsFilterForTyres = (params) => {
     filterParamsFromDict.typeTires = dict.value
-      .filter((city) => city.name === selectCite.value)
+      .filter((city) => city.name === select.city)
       .map((city) => {
         const selectedType = city.type.find((type) => type.title === params)
-        selectTypeTyres.value = selectedType.title
+        select.tyres = selectedType.title
         if (selectedType) {
           return selectedType.tires.map((tires) => tires.size)
         }
@@ -62,26 +66,16 @@ export default function usePriceFilter() {
   }
 
   const setNewParamsFilterForPrice = (params) => {
-    console.log('selectCite', selectCite.value)
-    console.log('selectTypeTitle', selectTypeTitle.value)
-    console.log('selectTypeTyres', selectTypeTyres.value)
-    console.log('params', params)
-    const selectedCity = dict.value.find((type) => type.name === selectCite.value)
-    console.log('Есть такой город:', selectedCity)
-    const selectType = selectedCity.type.find((type) => type.title === selectTypeTitle.value)
-    console.log('Есть такой тип услуг: ', selectType)
+    const selectedCity = dict.value.find((type) => type.name === select.city)
+    const selectType = selectedCity.type.find((type) => type.title === select.service)
     const selectTires = selectType.tires.find((type) => type.size === params)
-    if (selectTires) selectPrice.value = selectTires.price
-    console.log('Есть такой размер шин: ', selectTires)
+    if (selectTires) select.price = selectTires.price
   }
 
   return {
     dict: dict.value,
     filterParamsFromDict,
-    selectCite,
-    selectTypeTitle: computed(() => selectTypeTitle.value),
-    selectTypeTyres,
-    selectPrice,
+    select,
     getFirstFilterForCity,
     setNewParamsFilterForType,
     setNewParamsFilterForTyres,

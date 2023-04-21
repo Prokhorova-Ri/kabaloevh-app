@@ -12,22 +12,22 @@
 <!--          {{ filterParamsFromDict }}-->
           <VSelect
             :options='filterParamsFromDict.cites'
-            :placeholder="selectCite"
+            :placeholder="select.city"
             @option:selected="setNewParamsFilterForType"
           />
           <VSelect
             :options='filterParamsFromDict.typeTitle'
-            :placeholder="selectTypeTitle"
+            :placeholder="select.service"
             @option:selected="setNewParamsFilterForTyres"
           />
           <VSelect
-            :placeholder="selectTypeTyres"
+            :placeholder="select.tyres"
             :options='filterParamsFromDict.typeTires'
             @option:selected="setNewParamsFilterForPrice"
           />
         </div>
         <div>
-          Рассчет стоимости: {{ selectPrice }} руб
+          Рассчет стоимости: {{ select.price }} руб
         </div>
       </div>
       <div class='home-offer'>
@@ -58,10 +58,7 @@ export default {
     const filter = usePriceFilter()
     const {
       filterParamsFromDict,
-      selectCite,
-      selectTypeTitle,
-      selectTypeTyres,
-      selectPrice,
+      select,
       getFirstFilterForCity,
       setNewParamsFilterForType,
       setNewParamsFilterForTyres,
@@ -74,10 +71,7 @@ export default {
 
 
     return {
-      selectCite,
-      selectTypeTitle,
-      selectTypeTyres,
-      selectPrice,
+      select,
       filterParamsFromDict,
       setNewParamsFilterForType,
       setNewParamsFilterForPrice,
