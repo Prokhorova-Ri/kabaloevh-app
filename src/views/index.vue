@@ -1,4 +1,4 @@
-<template xmlns='http://www.w3.org/1999/html'>
+<template>
   <h2 class="home-title">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
   <WrapperLayout
     :class-list-for-height="['home-title', 'button', 'menu']"
@@ -9,50 +9,41 @@
       <div class='home-filter'>
         <p class='home-filter-title'>Расчитать стоимость</p>
         <div class='home-filter-input'>
-          <select
-            v-model="select.city"
+          <VSelect
+            :options='newFilterParamsFromDict.cites'
+            :placeholder="select.city"
+            @option:selected="setNewParamsFilterForType"
             class='home-filter-select'
-            @change='setNewParamsFilterForType(select.city)'
-          >
-            <option v-for='(item, index) in newFilterParamsFromDict.cites'
-                    :key='index'
-                    :selected="select.city"
-            >{{ item }}</option>
-          </select>
-          <select
-            v-model="select.service"
+          />
+          <VSelect
+            :options='newFilterParamsFromDict.typeTitle'
+            :placeholder="select.service"
+            @option:selected="setNewParamsFilterForTyres"
             class='home-filter-select'
-            @change='setNewParamsFilterForTyres(select.service)'
-          >
-            <option v-for='(title, indexTitle) in newFilterParamsFromDict.typeTitle'
-                    :key='indexTitle'
-                    :selected="select.service"
-            >{{ title }}</option>
-          </select>
-          <select
-            v-model="select.tyres"
+          />
+          <VSelect
+            :options='newFilterParamsFromDict.typeTires'
+            :placeholder="select.tyres"
+            @option:selected="setNewParamsFilterForPrice"
             class='home-filter-select'
-            @change='setNewParamsFilterForPrice(select.tyres)'
-          >
-            <option v-for='(item, index) in newFilterParamsFromDict.typeTires'
-                    :key='index'
-                    :selected="select.tyres"
-            >{{ item }}</option>
-          </select>
+          />
         </div>
         <div>
-          Рассчет стоимости: {{ select.price }} руб
+          Рассчет стоимости: {{ select.price.toLocaleString() }} руб
         </div>
       </div>
       <div class='home-offer'>
         <div class='home-offer-item'>
-          <p class='home-offer-item-title'>Выезд мастера в удобное время и место</p>
+          <img src='/src/assets/images/icons/check.svg'>
+          <p class='home-offer-item-title'>Выезд мастера в удобное время и место.</p>
         </div>
         <div class='home-offer-item'>
-          <p class='home-offer-item-title'>Самое современное оборудование и материалы</p>
+          <img src='/src/assets/images/icons/check.svg'>
+          <p class='home-offer-item-title'>Самое современное оборудование и материалы.</p>
         </div>
         <div class='home-offer-item'>
-          <p class='home-offer-item-title'>Качество услуг шиномонтажа без переплат</p>
+          <img src='/src/assets/images/icons/check.svg'>
+          <p class='home-offer-item-title'>Качество услуг шиномонтажа без переплат.</p>
         </div>
       </div>
     </template>
@@ -83,17 +74,12 @@ export default {
       unMountedFormationFiltersParams()
     })
 
-    const test = (item) => {
-      console.log('item', item)
-    }
-
     return {
       select,
       newFilterParamsFromDict,
       setNewParamsFilterForType,
       setNewParamsFilterForPrice,
-      setNewParamsFilterForTyres,
-      test
+      setNewParamsFilterForTyres
     }
   }
 }
@@ -119,30 +105,28 @@ export default {
       margin: 0 0 20px 0;
     }
     &-select {
-      padding: 10px;
-      margin: 0 0 20px 0;
-      background-color: white;
-      border-radius: 10px;
-      width: 100%;
-      &:focus {
-        outline: none;
-      }
+      margin: 0 0 10px 0;
     }
   }
   &-offer {
-    display: flex;
-    justify-content: space-between;
-    //gap: 21px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 11px 15px;
     &-item {
-      padding: 6px;
-      background: #FFFFFF;
-      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      width: 100px;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 40px 1fr;
+      margin: 0 0 11px 0;
+      gap: 16px;
+      width: 100%;
+      &:last-child {
+        margin: 0 0 0 0;
+      }
       &-title {
         font-weight: 600;
-        font-size: 12px;
-        text-align: center;
+        font-size: 16px;
+        text-align: left;
+        color: #1C1E58;
       }
     }
   }
