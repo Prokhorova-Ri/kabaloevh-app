@@ -46,11 +46,10 @@ export default {
   name: 'index',
   components: { WrapperLayout, Button },
   setup() {
-    const dictPrice = ref([])
-    const { dict } = usePriceFilter()
-    dictPrice.value = dict
 
+    const { dictPrice } = usePriceFilter()
     return { dictPrice }
+
   }
 }
 </script>

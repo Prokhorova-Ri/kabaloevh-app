@@ -1,4 +1,4 @@
-<template>
+<template xmlns='http://www.w3.org/1999/html'>
   <h2 class="home-title">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
   <WrapperLayout
     :class-list-for-height="['home-title', 'button', 'menu']"
@@ -9,22 +9,36 @@
       <div class='home-filter'>
         <p class='home-filter-title'>Расчитать стоимость</p>
         <div class='home-filter-input'>
-<!--          {{ filterParamsFromDict }}-->
-          <VSelect
-            :options='filterParamsFromDict.cites'
-            :placeholder="select.city"
-            @option:selected="setNewParamsFilterForType"
-          />
-          <VSelect
-            :options='filterParamsFromDict.typeTitle'
-            :placeholder="select.service"
-            @option:selected="setNewParamsFilterForTyres"
-          />
-          <VSelect
-            :placeholder="select.tyres"
-            :options='filterParamsFromDict.typeTires'
-            @option:selected="setNewParamsFilterForPrice"
-          />
+          <select
+            v-model="select.city"
+            class='home-filter-select'
+            @change='setNewParamsFilterForType(select.city)'
+          >
+            <option v-for='(item, index) in newFilterParamsFromDict.cites'
+                    :key='index'
+                    :selected="select.city"
+            >{{ item }}</option>
+          </select>
+          <select
+            v-model="select.service"
+            class='home-filter-select'
+            @change='setNewParamsFilterForTyres(select.service)'
+          >
+            <option v-for='(title, indexTitle) in newFilterParamsFromDict.typeTitle'
+                    :key='indexTitle'
+                    :selected="select.service"
+            >{{ title }}</option>
+          </select>
+          <select
+            v-model="select.tyres"
+            class='home-filter-select'
+            @change='setNewParamsFilterForPrice(select.tyres)'
+          >
+            <option v-for='(item, index) in newFilterParamsFromDict.typeTires'
+                    :key='index'
+                    :selected="select.tyres"
+            >{{ item }}</option>
+          </select>
         </div>
         <div>
           Рассчет стоимости: {{ select.price }} руб
@@ -57,31 +71,35 @@ export default {
   setup() {
     const filter = usePriceFilter()
     const {
-      filterParamsFromDict,
+      newFilterParamsFromDict,
       select,
-      getFirstFilterForCity,
+      unMountedFormationFiltersParams,
       setNewParamsFilterForType,
       setNewParamsFilterForTyres,
       setNewParamsFilterForPrice
     } = filter
 
     onMounted(() => {
-      getFirstFilterForCity()
+      unMountedFormationFiltersParams()
     })
 
+    const test = (item) => {
+      console.log('item', item)
+    }
 
     return {
       select,
-      filterParamsFromDict,
+      newFilterParamsFromDict,
       setNewParamsFilterForType,
       setNewParamsFilterForPrice,
-      setNewParamsFilterForTyres
+      setNewParamsFilterForTyres,
+      test
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .home {
   &-title {
     margin: 20px 0 20px 0;
@@ -100,8 +118,15 @@ export default {
       text-align: center;
       margin: 0 0 20px 0;
     }
-    &-input {
+    &-select {
+      padding: 10px;
       margin: 0 0 20px 0;
+      background-color: white;
+      border-radius: 10px;
+      width: 100%;
+      &:focus {
+        outline: none;
+      }
     }
   }
   &-offer {
@@ -122,4 +147,5 @@ export default {
     }
   }
 }
+
 </style>

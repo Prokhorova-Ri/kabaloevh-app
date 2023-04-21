@@ -1,4 +1,4 @@
-import { computed, reactive, ref } from 'vue'
+import { watch,  reactive, ref } from 'vue'
 import dictPrice from './dict.js'
 
 export default function usePriceFilter() {
@@ -11,25 +11,25 @@ export default function usePriceFilter() {
     price: ''
   })
 
-  const filterParamsFromDict = reactive({
+  const newFilterParamsFromDict = reactive({
     cites: [],
     typeTitle: [],
     typeTires: []
   })
 
 
-  const getFirstFilterForCity = (city = 'г.Никольское') => {
+  const unMountedFormationFiltersParams = (city = 'г.Никольское') => {
     dict.value.forEach((item) => {
       select.city = dict.value[0].name
-      filterParamsFromDict.cites = [...filterParamsFromDict.cites, item.name]
+      newFilterParamsFromDict.cites = [...newFilterParamsFromDict.cites, item.name]
       if (city === item.name) {
         item.type.forEach((type) => {
           select.service = item.type[0].title
-          filterParamsFromDict.typeTitle = [...filterParamsFromDict.typeTitle, type.title]
+          newFilterParamsFromDict.typeTitle = [...newFilterParamsFromDict.typeTitle, type.title]
           type.tires.forEach((tires) => {
             select.tyres = type.tires[0].size
             select.price = type.tires[0].price
-            filterParamsFromDict.typeTires = [...filterParamsFromDict.typeTires, tires.size]
+            newFilterParamsFromDict.typeTires = [...newFilterParamsFromDict.typeTires, tires.size]
           })
         })
       }
@@ -39,7 +39,7 @@ export default function usePriceFilter() {
   // ФИЛЬТРУЕМ ТИПЫ УСЛУГ
   const setNewParamsFilterForType = (params) => {
     select.city = params
-    filterParamsFromDict.typeTitle = dict.value
+    newFilterParamsFromDict.typeTitle = dict.value
       .filter((city) => city.name === select.city)
       .map((city) => city.type.map((type) => {
         select.service = city.type[0].title
@@ -47,24 +47,30 @@ export default function usePriceFilter() {
       }))
       .flat()
       .filter((title) => title !== undefined)
+    setNewParamsFilterForTyres(select.service)
   }
 
   // ФИЛЬТРУЕМ ТИПЫ ШИН ПОСЛЕ ВЫБРАНОГО ТИП УСЛУГ
   const setNewParamsFilterForTyres = (params) => {
-    filterParamsFromDict.typeTires = dict.value
+    newFilterParamsFromDict.typeTires = dict.value
       .filter((city) => city.name === select.city)
       .map((city) => {
         const selectedType = city.type.find((type) => type.title === params)
-        select.tyres = selectedType.title
+        select.service = selectedType.title
         if (selectedType) {
-          return selectedType.tires.map((tires) => tires.size)
+          return selectedType.tires.map((tires) => {
+            select.tyres = selectedType.tires[0].size
+            return tires.size
+          })
         }
         return []
       })
       .flat()
       .filter((title) => title !== undefined)
+    setNewParamsFilterForPrice(select.tyres)
   }
 
+  // ФИЛЬТРУЕМ НОВЫЙ ЦЕННИК
   const setNewParamsFilterForPrice = (params) => {
     const selectedCity = dict.value.find((type) => type.name === select.city)
     const selectType = selectedCity.type.find((type) => type.title === select.service)
@@ -72,11 +78,13 @@ export default function usePriceFilter() {
     if (selectTires) select.price = selectTires.price
   }
 
+
   return {
-    dict: dict.value,
-    filterParamsFromDict,
+    dict,
+    dictPrice,
+    newFilterParamsFromDict,
     select,
-    getFirstFilterForCity,
+    unMountedFormationFiltersParams,
     setNewParamsFilterForType,
     setNewParamsFilterForTyres,
     setNewParamsFilterForPrice

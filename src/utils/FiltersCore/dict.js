@@ -6,9 +6,8 @@ const dict = [
     name: 'г.Никольское',
     type: [
       {
-        title: 'Сезонная замена 4x колес(Никольское)',
+        title: 'Сезонная замена 4x колес',
         tires: [
-          { size: 'R-Никольское', price: '900' },
           { size: 'R-13', price: '1000' },
           { size: 'R-14', price: '1200' },
           { size: 'R-15', price: '1300' },
@@ -30,7 +29,6 @@ const dict = [
       {
         title: 'Сезонная замена 4x колес',
         tires: [
-          { size: 'R-Лен.Области', price: '1500' },
           { size: 'R-13', price: '1500' },
           { size: 'R-14', price: '1700' },
           { size: 'R-15', price: '1800' },
@@ -44,7 +42,42 @@ const dict = [
       {
         title: 'ТЕСТОВАЯ ВЕТКА',
         tires: [
-          { size: 'ТЕСТОВАЯ-R-13', price: '1500' },
+          { size: 'ТЕСТОВАЯ-R-13', price: '0' },
+          { size: 'R-14', price: '1700' },
+          { size: 'R-15', price: '1800' },
+          { size: 'R-16', price: '1900' },
+          { size: 'R-17', price: '2200' },
+          { size: 'R-18', price: '2400' },
+          { size: 'R-19', price: '2500' },
+          { size: 'R-20', price: '2700' },
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    city: 'Цены по г.Тест:',
+    code: 'test',
+    name: 'г.Тест',
+    type: [
+      {
+        title: 'Сезонная теста',
+        tires: [
+          { size: 'R-г.Тест', price: '10000' },
+          { size: 'R-13', price: '1500' },
+          { size: 'R-14', price: '1700' },
+          { size: 'R-15', price: '1800' },
+          { size: 'R-16', price: '1900' },
+          { size: 'R-17', price: '2200' },
+          { size: 'R-18', price: '2400' },
+          { size: 'R-19', price: '2500' },
+          { size: 'R-20', price: '2700' },
+        ]
+      },
+      {
+        title: 'Сезонная месса',
+        tires: [
+          { size: 'гав гав.Тест', price: '200000' },
           { size: 'R-14', price: '1700' },
           { size: 'R-15', price: '1800' },
           { size: 'R-16', price: '1900' },
