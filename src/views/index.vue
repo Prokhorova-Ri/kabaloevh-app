@@ -23,6 +23,7 @@
           <VSelect
             :placeholder="selectTypeTyres"
             :options='filterParamsFromDict.typeTires'
+            @option:selected="setNewParamsFilterForPrice"
           />
         </div>
         <div>
@@ -49,7 +50,7 @@
 import Button from '../components/Universal/Button.vue'
 import WrapperLayout from '../components/Universal/WrapperLayout.vue'
 import usePriceFilter from '../../src/utils/FiltersCore/index.js'
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted } from 'vue'
 export default {
   name: 'Home',
   components: { WrapperLayout, Button },
@@ -63,7 +64,8 @@ export default {
       selectPrice,
       getFirstFilterForCity,
       setNewParamsFilterForType,
-      setNewParamsFilterForTyres
+      setNewParamsFilterForTyres,
+      setNewParamsFilterForPrice
     } = filter
 
     onMounted(() => {
@@ -78,6 +80,7 @@ export default {
       selectPrice,
       filterParamsFromDict,
       setNewParamsFilterForType,
+      setNewParamsFilterForPrice,
       setNewParamsFilterForTyres
     }
   }

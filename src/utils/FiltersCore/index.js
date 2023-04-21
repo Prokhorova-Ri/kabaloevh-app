@@ -52,7 +52,6 @@ export default function usePriceFilter() {
       .map((city) => {
         const selectedType = city.type.find((type) => type.title === params)
         selectTypeTyres.value = selectedType.title
-        console.log('selectedType', selectedType)
         if (selectedType) {
           return selectedType.tires.map((tires) => tires.size)
         }
@@ -60,6 +59,20 @@ export default function usePriceFilter() {
       })
       .flat()
       .filter((title) => title !== undefined)
+  }
+
+  const setNewParamsFilterForPrice = (params) => {
+    console.log('selectCite', selectCite.value)
+    console.log('selectTypeTitle', selectTypeTitle.value)
+    console.log('selectTypeTyres', selectTypeTyres.value)
+    console.log('params', params)
+    const selectedCity = dict.value.find((type) => type.name === selectCite.value)
+    console.log('Есть такой город:', selectedCity)
+    const selectType = selectedCity.type.find((type) => type.title === selectTypeTitle.value)
+    console.log('Есть такой тип услуг: ', selectType)
+    const selectTires = selectType.tires.find((type) => type.size === params)
+    if (selectTires) selectPrice.value = selectTires.price
+    console.log('Есть такой размер шин: ', selectTires)
   }
 
   return {
@@ -71,6 +84,7 @@ export default function usePriceFilter() {
     selectPrice,
     getFirstFilterForCity,
     setNewParamsFilterForType,
-    setNewParamsFilterForTyres
+    setNewParamsFilterForTyres,
+    setNewParamsFilterForPrice
   }
 }
