@@ -2,7 +2,7 @@
   <section class="content">
     <slot />
   </section>
-  <PreLoader />
+<!--  <PreLoader />-->
   <BottomMenu />
 </template>
 

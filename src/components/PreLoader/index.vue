@@ -1,6 +1,6 @@
 <template>
   <div class='pre-loader'>
-    <img class='pre-loader-image' src='/public/icon3.png'>
+<!--    <img class='pre-loader-image' src='/public/icon3.png'>-->
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'index',
   setup() {
-    setTimeout(function() {}, 2000)
+    // setTimeout(function() {}, 2000)
     return {}
   }
 }
@@ -16,22 +16,19 @@ export default {
 
 <style lang='scss' scoped>
   .pre-loader {
-    background-color: #1C1E58;
+    background-color: white;
     position: absolute;
     top: 0;
+    left: 0;
     bottom: 59px;
-    width: 50%;
     z-index: 99999;
     display: flex;
     align-items: center;
-    animation: progress 4s forwards;
+    animation: progress 3s forwards;
     &-image {
       position: absolute;
-      margin: 0 0 0 10px;
       width: 75px;
       height: 75px;
-      //position: relative;
-      //left: 7%;
       animation: car .7s forwards;
     }
   }
@@ -40,7 +37,10 @@ export default {
     0% {
       left: 20%;
     }
-    100% { left: 100% }
+    100% {
+      display: none;
+      left: 100%
+    }
 
   }
 
@@ -53,7 +53,7 @@ export default {
       width: 100%;
     }
     75% {
-      background-color: white;
+      background-color: #464888;
     }
     100% {
       left: 100%;
