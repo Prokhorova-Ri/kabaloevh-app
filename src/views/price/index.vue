@@ -6,7 +6,6 @@
       background-color='transparent'
       border-radius='10px'
       padding='15px 16px'
-      display='flex'
     >
       <template #content>
         <div

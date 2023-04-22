@@ -6,6 +6,7 @@
     border-radius: ${borderRadius};
     background-color: ${backgroundColor};
     padding: ${padding};
+    display: ${display}
     `
     "
   >
@@ -33,6 +34,10 @@ export default defineComponent({
     padding: {
       type: String,
       default: ''
+    },
+    display: {
+      type: String,
+      default: 'block'
     }
   },
   emits: ['updateHeight'],
@@ -75,5 +80,6 @@ export default defineComponent({
     min-height: 95%;
     overflow-y: scroll;
     flex-direction: column;
+    justify-content: space-around;
   }
 </style>
