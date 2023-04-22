@@ -23,8 +23,8 @@ export default {
   name: 'Review',
   props: {
     item: {
-      type: String,
-      default: ''
+      type: Object,
+      default: () => ({})
     }
   },
   setup(props) {

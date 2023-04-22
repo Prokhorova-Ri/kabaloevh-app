@@ -1,54 +1,56 @@
 <template>
-  <h2 class="home-title">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
-  <WrapperLayout
-    :class-list-for-height="['home-title', 'button', 'menu']"
-    background-color='transparent'
-    border-radius='0'
-  >
-    <template #content>
-      <div class='home-filter'>
-        <p class='home-filter-title'>Расчитать стоимость</p>
-        <div class='home-filter-input'>
-          <VSelect
-            :options='newFilterParamsFromDict.cites'
-            :placeholder="select.city"
-            @option:selected="setNewParamsFilterForType"
-            class='home-filter-select'
-          />
-          <VSelect
-            :options='newFilterParamsFromDict.typeTitle'
-            :placeholder="select.service"
-            @option:selected="setNewParamsFilterForTyres"
-            class='home-filter-select'
-          />
-          <VSelect
-            :options='newFilterParamsFromDict.typeTires'
-            :placeholder="select.tyres"
-            @option:selected="setNewParamsFilterForPrice"
-            class='home-filter-select'
-          />
+  <div>
+    <h2 class="home-title ">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
+    <WrapperLayout
+      :class-list-for-height="['home-title', 'button', 'menu']"
+      background-color='transparent'
+      border-radius='0'
+    >
+      <template #content>
+        <div class='home-filter'>
+          <p class='home-filter-title'>Расчитать стоимость</p>
+          <div class='home-filter-input'>
+            <VSelect
+              :options='newFilterParamsFromDict.cites'
+              :placeholder="select.city"
+              @option:selected="setNewParamsFilterForType"
+              class='home-filter-select'
+            />
+            <VSelect
+              :options='newFilterParamsFromDict.typeTitle'
+              :placeholder="select.service"
+              @option:selected="setNewParamsFilterForTyres"
+              class='home-filter-select'
+            />
+            <VSelect
+              :options='newFilterParamsFromDict.typeTires'
+              :placeholder="select.tyres"
+              @option:selected="setNewParamsFilterForPrice"
+              class='home-filter-select'
+            />
+          </div>
+          <div>
+            Рассчет стоимости: {{ select.price.toLocaleString() }} руб
+          </div>
         </div>
-        <div>
-          Рассчет стоимости: {{ select.price.toLocaleString() }} руб
+        <div class='home-offer'>
+          <div class='home-offer-item'>
+            <img src='/src/assets/images/icons/check.svg'>
+            <p class='home-offer-item-title'>Выезд мастера в удобное время и место.</p>
+          </div>
+          <div class='home-offer-item'>
+            <img src='/src/assets/images/icons/check.svg'>
+            <p class='home-offer-item-title'>Самое современное оборудование и материалы.</p>
+          </div>
+          <div class='home-offer-item'>
+            <img src='/src/assets/images/icons/check.svg'>
+            <p class='home-offer-item-title'>Качество услуг шиномонтажа без переплат.</p>
+          </div>
         </div>
-      </div>
-      <div class='home-offer'>
-        <div class='home-offer-item'>
-          <img src='/src/assets/images/icons/check.svg'>
-          <p class='home-offer-item-title'>Выезд мастера в удобное время и место.</p>
-        </div>
-        <div class='home-offer-item'>
-          <img src='/src/assets/images/icons/check.svg'>
-          <p class='home-offer-item-title'>Самое современное оборудование и материалы.</p>
-        </div>
-        <div class='home-offer-item'>
-          <img src='/src/assets/images/icons/check.svg'>
-          <p class='home-offer-item-title'>Качество услуг шиномонтажа без переплат.</p>
-        </div>
-      </div>
-    </template>
-  </WrapperLayout>
-  <Button text='Получить скидку' />
+      </template>
+    </WrapperLayout>
+    <Button text='Получить скидку' />
+  </div>
 </template>
 
 <script>
