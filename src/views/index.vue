@@ -7,30 +7,42 @@
       border-radius='0'
     >
       <template #content>
+        <SelectParamsLayout :select-filters-list='select'/>
+        <form class='form'>
+          <StandartInput :schemas='valueFromRequest'/>
+        </form>
+      </template>
+    </WrapperLayout>
+    <WrapperLayout
+      :class-list-for-height="['home-title', 'button', 'menu']"
+      background-color='transparent'
+      border-radius='0'
+    >
+      <template #content>
         <div class='home-filter'>
           <p class='home-filter-title'>Расчитать стоимость</p>
           <div class='home-filter-input'>
             <VSelect
               :options='newFilterParamsFromDict.cites'
-              :placeholder="select.city"
+              :placeholder="select.city.name"
               @option:selected="setNewParamsFilterForType"
               class='home-filter-select'
             />
             <VSelect
               :options='newFilterParamsFromDict.typeTitle'
-              :placeholder="select.service"
+              :placeholder="select.service.name"
               @option:selected="setNewParamsFilterForTyres"
               class='home-filter-select'
             />
             <VSelect
               :options='newFilterParamsFromDict.typeTires'
-              :placeholder="select.tyres"
+              :placeholder="select.tyres.name"
               @option:selected="setNewParamsFilterForPrice"
               class='home-filter-select'
             />
           </div>
           <div>
-            Рассчет стоимости: {{ select.price.toLocaleString() }} руб
+            Рассчет стоимости: {{ select.price.name.toLocaleString() }} руб
           </div>
         </div>
         <div class='home-offer'>
@@ -49,18 +61,21 @@
         </div>
       </template>
     </WrapperLayout>
-    <Button text='Получить скидку' />
+    <Button text='Получить скидку' @onClick='openFormRequest'/>
   </div>
 </template>
 
 <script>
 import Button from '../components/Universal/Button.vue'
 import WrapperLayout from '../components/Universal/WrapperLayout.vue'
+import SelectParamsLayout from '../components/SelectParamsLayout/index.vue'
 import usePriceFilter from '../../src/utils/FiltersCore/index.js'
-import { onMounted } from 'vue'
+import StandartInput from '../../src/utils/inputs/standartInput.vue'
+import { valueFromRequest } from '../utils/Inputs/dictInputs'
+import { onMounted, ref } from 'vue'
 export default {
   name: 'Home',
-  components: { WrapperLayout, Button },
+  components: { WrapperLayout, Button,  StandartInput, SelectParamsLayout },
   setup() {
     const filter = usePriceFilter()
     const {
@@ -76,12 +91,19 @@ export default {
       unMountedFormationFiltersParams()
     })
 
+    const openFormRequest = () => {
+      // ФОРМИЮ СПИСОК ВЫБРАННЫХ В МАССИВ
+      console.log('openFormRequest')
+    }
+
     return {
       select,
       newFilterParamsFromDict,
+      valueFromRequest,
       setNewParamsFilterForType,
       setNewParamsFilterForPrice,
-      setNewParamsFilterForTyres
+      setNewParamsFilterForTyres,
+      openFormRequest
     }
   }
 }
@@ -132,6 +154,11 @@ export default {
       }
     }
   }
+}
+.form {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 11px 15px;
 }
 
 </style>

@@ -2,7 +2,7 @@
   <button
     class='button'
     :style="`margin: ${margin}`"
-    @click='onClick'
+    @click='onClickButton'
   >
     {{ text }}
   </button>
@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'Button',
-  emits: ['onClickButton'],
+  emits: ['onClick'],
   props: {
     text: {
       type: String,
@@ -24,11 +24,11 @@ export default {
   },
   setup(props, context) {
 
-    const onClick = () => {
-      context.emit('onClickButton')
+    const onClickButton = () => {
+      context.emit('onClick')
     }
 
-    return { onClick }
+    return { onClickButton }
   }
 }
 </script>

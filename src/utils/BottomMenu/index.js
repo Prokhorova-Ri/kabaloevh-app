@@ -1,5 +1,5 @@
 import dictMenu from './dict'
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 export default function useMenuList() {
@@ -14,6 +14,11 @@ export default function useMenuList() {
       }
     })
   }
+
+  //ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ДЕЛАЕМ АКТИВНОЕ МЕНЮ
+  onMounted(() => {
+    checkSelectPageOnMounted()
+  })
 
   // ОТСЛЕЖИВАЮ РОУТИНГ ПРИ ЕГО ЗАМЕНЕ ВЫЗЫВАЮ ФУНКЦИЮ СМЕНЫ ТАБА В МЕНЮ
   watch(
