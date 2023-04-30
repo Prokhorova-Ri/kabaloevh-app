@@ -1,18 +1,21 @@
 <template>
   <div>
     <h2 class="home-title ">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
-    <WrapperLayout
-      :class-list-for-height="['home-title', 'button', 'menu']"
-      background-color='transparent'
-      border-radius='0'
-    >
-      <template #content>
-        <SelectParamsLayout :select-filters-list='select'/>
-        <form class='form'>
-          <StandartInput :schemas='valueFromRequest'/>
-        </form>
-      </template>
-    </WrapperLayout>
+    <template v-if='isForm'>
+      <WrapperLayout
+        :class-list-for-height="['home-title', 'button', 'menu']"
+        background-color='transparent'
+        border-radius='0'
+      >
+        <template #content>
+          <SelectParamsLayout :select-filters-list='select'/>
+          <form class='form'>
+            <StandartInput :schemas='valueFromRequest'/>
+          </form>
+        </template>
+      </WrapperLayout>
+    </template>
+    <template v-else>
     <WrapperLayout
       :class-list-for-height="['home-title', 'button', 'menu']"
       background-color='transparent'
@@ -61,7 +64,8 @@
         </div>
       </template>
     </WrapperLayout>
-    <Button text='Получить скидку' @onClick='openFormRequest'/>
+    </template>
+    <Button :simple='isForm' text='Получить скидку' @onClick='openFormRequest'/>
   </div>
 </template>
 
@@ -77,6 +81,7 @@ export default {
   name: 'Home',
   components: { WrapperLayout, Button,  StandartInput, SelectParamsLayout },
   setup() {
+    const isForm = ref(false)
     const filter = usePriceFilter()
     const {
       newFilterParamsFromDict,
@@ -94,12 +99,14 @@ export default {
     const openFormRequest = () => {
       // ФОРМИЮ СПИСОК ВЫБРАННЫХ В МАССИВ
       console.log('openFormRequest')
+      isForm.value = !isForm.value
     }
 
     return {
       select,
       newFilterParamsFromDict,
       valueFromRequest,
+      isForm,
       setNewParamsFilterForType,
       setNewParamsFilterForPrice,
       setNewParamsFilterForTyres,
