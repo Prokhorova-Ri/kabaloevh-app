@@ -1,25 +1,12 @@
 <template>
   <div>
     <h2 class="home-title ">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
-    <template v-if='isForm'>
-      <WrapperLayout
-        :class-list-for-height="['home-title', 'button', 'menu']"
-        background-color='transparent'
-        border-radius='0'
-      >
-        <template #content>
-          <SelectParamsLayout :select-filters-list='select'/>
-          <form class='form'>
-            <StandartInput :schemas='valueFromRequest'/>
-          </form>
-        </template>
-      </WrapperLayout>
-    </template>
-    <template v-else>
     <WrapperLayout
       :class-list-for-height="['home-title', 'button', 'menu']"
       background-color='transparent'
       border-radius='0'
+      display='flex'
+      justify-content='center'
     >
       <template #content>
         <div class='home-filter'>
@@ -64,8 +51,16 @@
         </div>
       </template>
     </WrapperLayout>
-    </template>
     <Button :simple='isForm' text='Получить скидку' @onClick='openFormRequest'/>
+    <LayoutToTop :active='isForm'>
+      <template #content>
+        <SelectParamsLayout :select-filters-list='select'/>
+        <form class='form'>
+          <StandartInput :schemas='valueFromRequest'/>
+          <button>Отправить</button>
+        </form>
+      </template>
+    </LayoutToTop>
   </div>
 </template>
 
@@ -77,9 +72,10 @@ import usePriceFilter from '../../src/utils/FiltersCore/index.js'
 import StandartInput from '../../src/utils/inputs/standartInput.vue'
 import { valueFromRequest } from '../utils/Inputs/dictInputs'
 import { onMounted, ref } from 'vue'
+import LayoutToTop from '../components/Universal/LayoutToTop.vue'
 export default {
   name: 'Home',
-  components: { WrapperLayout, Button,  StandartInput, SelectParamsLayout },
+  components: { LayoutToTop, WrapperLayout, Button,  StandartInput, SelectParamsLayout },
   setup() {
     const isForm = ref(false)
     const filter = usePriceFilter()

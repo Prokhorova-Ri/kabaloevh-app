@@ -1,31 +1,11 @@
 <template>
-  <template v-if='simpleButton'>
-    <button
-      class='button'
-      :style="`margin: ${margin}`"
-      @click='onClickButton'
-    >
-      {{ text }}
-    </button>
-  </template>
-  <template v-else>
-    <div class='multi-button-wrapper'>
-      <button
-        class='button button-multi-close'
-        :style="`margin: ${margin}`"
-        @click='onClickButton'
-      >
-        Отменить
-      </button>
-      <button
-        class='button button-multi-send'
-        :style="`margin: ${margin}`"
-        @click='onClickButton'
-      >
-        Отправить
-      </button>
-    </div>
-  </template>
+  <button
+    class='button'
+    :style="`margin: ${margin}`"
+    @click='onClickButton'
+  >
+    {{ text }}
+  </button>
 </template>
 
 <script>
@@ -48,17 +28,12 @@ export default {
     }
   },
   setup(props, context) {
-    const simpleButton = ref(true)
 
     const onClickButton = () => {
       context.emit('onClick')
     }
 
-    watch(() => props?.simple, () => {
-      simpleButton.value = !simpleButton.value
-    })
-
-    return { simpleButton, onClickButton }
+    return { onClickButton }
   }
 }
 </script>
@@ -73,7 +48,7 @@ export default {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
     &-multi {
       &-close {
@@ -87,8 +62,7 @@ export default {
     }
   }
 .multi-button-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   align-items: center;
   gap: 10px;
 }

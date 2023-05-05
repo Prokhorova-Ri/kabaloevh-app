@@ -6,7 +6,8 @@
     border-radius: ${borderRadius};
     background-color: ${backgroundColor};
     padding: ${padding};
-    display: ${display}
+    display: ${display};
+    justify-content: ${justifyContent}
     `
     "
   >
@@ -38,6 +39,10 @@ export default defineComponent({
     display: {
       type: String,
       default: 'block'
+    },
+    justifyContent: {
+      type: String,
+      default: 'space-around'
     }
   },
   emits: ['updateHeight'],
@@ -80,6 +85,5 @@ export default defineComponent({
     min-height: 95%;
     overflow-y: scroll;
     flex-direction: column;
-    justify-content: space-around;
   }
 </style>
