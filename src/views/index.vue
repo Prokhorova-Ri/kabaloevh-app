@@ -51,8 +51,8 @@
         </div>
       </template>
     </WrapperLayout>
-    <Button :simple='isForm' text='Получить скидку' @onClick='openFormRequest'/>
-    <LayoutToTop :active='isForm'>
+    <Button :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
+    <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
       <template #content>
         <SelectParamsLayout :select-filters-list='select'/>
         <form class='form'>
@@ -92,10 +92,10 @@ export default {
       unMountedFormationFiltersParams()
     })
 
-    const openFormRequest = () => {
+    const openFormRequest = (status) => {
       // ФОРМИЮ СПИСОК ВЫБРАННЫХ В МАССИВ
       console.log('openFormRequest')
-      isForm.value = !isForm.value
+      isForm.value = status
     }
 
     return {

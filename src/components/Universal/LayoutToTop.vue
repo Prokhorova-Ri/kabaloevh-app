@@ -1,22 +1,26 @@
 <template>
-  <div ref='layoutToTop' class='layout-to-top' >
-    <template v-if='active'>
-      <div class='layout-to-top-close' />
-      <div class='layout-to-top-middle'>
-        <WrapperLayout
-          :class-list-for-height="['home-title', 'home-offer']"
-          background-color='white'
-          border-radius='0'
-          @updateHeight='setNewHeight'
-          padding='10px 15px'
-        >
-          <template #content>
-            <slot name='content'>Передайте контент</slot>
-          </template>
-        </WrapperLayout>
-      </div>
-    </template>
-  </div>
+  <div
+    v-if='show'
+    class='layout-to-top-wrapper-bg'
+    @click.stop='closeModal'
+  />
+    <div ref='layoutToTop' class='layout-to-top' >
+      <template v-if='show'>
+        <div class='layout-to-top-close' />
+        <div class='layout-to-top-middle'>
+          <WrapperLayout
+            :class-list-for-height="['home-title', 'home-offer']"
+            background-color='white'
+            border-radius='0'
+            padding='10px 15px'
+          >
+            <template #content>
+              <slot name='content'>Передайте контент</slot>
+            </template>
+          </WrapperLayout>
+        </div>
+      </template>
+    </div>
 </template>
 
 <script>
@@ -31,58 +35,28 @@ export default {
     }
   },
   components: { WrapperLayout },
-  setup(props) {
+  emits:['updateActive'],
+  setup(props, context) {
     const layoutToTop = ref()
-    const layoutToTopWrapper = ref()
-    let height = ref('0px')
+    const show = ref(props?.active)
 
-    watch(() => props?.active, () => {
-      layoutToTop.value.style.height = `${height.value}px`
-      layoutToTop.value.classList.add('layout-to-top-active')
-    })
-
-    let startY = null; // начальная позиция Y
-
-    onMounted(() => {
-      // layoutToTop.value.addEventListener('touchstart', (event) => {
-      //   if (event.touches.length === 1) { // если на экране один палец
-      //     startY = event.touches[0].clientY; // сохраняем начальную позицию Y
-      //   }
-      // });
-      //
-      // layoutToTop.value.addEventListener('touchmove', (event) => {
-      //   if (startY !== null) { // если было зажатие пальца на экране
-      //     const currentY = event.touches[0].clientY; // текущая позиция Y
-      //     const deltaY = currentY - startY; // разница между начальной и текущей позицией Y
-      //     if (deltaY > 100) { // если движение вниз
-      //       console.log('Движение вниз');
-      //       layoutToTop.value.classList.remove('layout-to-top-active')
-      //       layoutToTop.value.classList.add('layout-to-top-not-active')
-      //       setTimeout(() => {
-      //         layoutToTop.value.classList.remove('layout-to-top-not-active')
-      //       }, 5000)
-      //     }
-      //   }
-      // });
-      //
-      // layoutToTop.value.addEventListener('touchend', () => {
-      //   startY = null; // сбрасываем начальную позицию Y
-      // });
+    watch(() => props?.active, (newActive) => {
+      if (newActive) {
+        show.value = newActive
+        layoutToTop.value.classList.add('layout-to-top-active')
+      }
     })
 
     const closeModal = () => {
-      console.log('Touch')
-    }
-
-    const setNewHeight = ($height) => {
-      height.value = $height
+      show.value = false
+      context.emit('updateActive', false)
+      layoutToTop.value.classList.remove('layout-to-top-active')
     }
 
     return {
       layoutToTop,
-      layoutToTopWrapper,
-      closeModal,
-      setNewHeight
+      show,
+      closeModal
     }
   }
 }
@@ -99,8 +73,41 @@ export default {
     z-index: 99;
     &-active {
       transform: translateY(0);
+      transition: transform 1s ease;
+    }
+    &-close {
+      width: 30px;
+      height: 3px;
+      border-radius: 10px;
+      background: white;
+      margin: 20px 0;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-wrapper-bg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      background: rgba(0,0,0, 0.3);
     }
   }
+
+  @keyframes toBottom {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
   //.layout-to-top {
   //  position: absolute;
   //  left: 0;
@@ -109,16 +116,7 @@ export default {
   //  z-index: 99;
   //  overflow: auto;
   //
-  //  &-close {
-  //    width: 30px;
-  //    height: 3px;
-  //    border-radius: 10px;
-  //    background: #333333;
-  //    margin: 20px 0;
-  //    position: relative;
-  //    left: 50%;
-  //    transform: translate(-50%, -50%);
-  //  }
+  //
   //  &-active {
   //    animation: toTop .7s;
   //  }
