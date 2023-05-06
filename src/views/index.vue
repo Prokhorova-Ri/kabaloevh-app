@@ -56,23 +56,20 @@
       <template #content>
         <WrapperLayout
           :class-list-for-height="['select-params', -'layout-to-top-close']"
-          background-color='white'
-          border-radius='0'
-          padding='10px 15px'
+          background-color='#f5f5f5'
+          border-radius='10px 10px 0 0'
+          padding='20px 15px'
         >
           <template #content>
-            <SelectParamsLayout :select-filters-list='select'/>
+            <div style='margin: 0 0 20px 0'>
+              <SelectParamsLayout :select-filters-list='select'/>
+            </div>
             <RequestForm>
-              <template #name>
-                <h2>name</h2>
-              </template>
               <template #inputs>
                 <StandartInput :schemas='valueFromRequest'/>
               </template>
-              <template #buttons>
-                <Button :simple='isForm' text='Получить скидку'/>
-              </template>
             </RequestForm>
+            <Button margin='20px 0 10px 0' :simple='isForm' text='Отправить'/>
           </template>
         </WrapperLayout>
       </template>

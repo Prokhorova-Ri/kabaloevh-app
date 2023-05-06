@@ -24,10 +24,10 @@ export default {
   .input {
     width: 100%;
     padding: 15px 0 15px 15px;
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
-    margin: 0 0 5px 0;
-    font-size: 16px;
+    margin: 0 0 8px 0;
+    font-size: 14px;
     &:focus {
       outline: none;
     }
