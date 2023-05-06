@@ -32,7 +32,31 @@
         </div>
       </template>
     </WrapperLayout>
-    <Button text='Оставить заявку' />
+    <Button text='Оставить заявку'  @onClick='openFormRequest(true)' />
+    <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
+      <template #content>
+        <WrapperLayout
+          :class-list-for-height="['form', -'layout-to-top-close']"
+          background-color='white'
+          border-radius='0'
+          padding='10px 15px'
+        >
+          <template #content>
+            <RequestForm>
+              <template #name>
+                <h2>name</h2>
+              </template>
+              <template #inputs>
+                <StandartInput :schemas='valueFromRequest'/>
+              </template>
+              <template #buttons>
+                <Button :simple='isForm' text='Получить скидку'/>
+              </template>
+            </RequestForm>
+          </template>
+        </WrapperLayout>
+      </template>
+    </LayoutToTop>
   </div>
 </template>
 
@@ -40,14 +64,29 @@
 import Button from '../../components/Universal/Button.vue'
 import WrapperLayout from '../../components/Universal/WrapperLayout.vue'
 import usePriceFilter from '../../../src/utils/FiltersCore/index.js'
+import { valueFromRequest } from '../../utils/Inputs/dictInputs'
+import StandartInput from '../../../src/utils/inputs/standartInput.vue'
+
+import LayoutToTop from '../../components/Universal/LayoutToTop.vue'
+import RequestForm from '../../components/Universal/RequestForm.vue'
 import { ref } from 'vue'
 export default {
   name: 'index',
-  components: { WrapperLayout, Button },
+  components: { WrapperLayout, Button, LayoutToTop, RequestForm, StandartInput },
   setup() {
-
+    const isForm = ref(false)
+    const openFormRequest = (status) => {
+      // ФОРМИЮ СПИСОК ВЫБРАННЫХ В МАССИВ
+      console.log('openFormRequest')
+      isForm.value = status
+    }
     const { dictPrice } = usePriceFilter()
-    return { dictPrice }
+    return {
+      valueFromRequest,
+      dictPrice,
+      openFormRequest,
+      isForm
+    }
 
   }
 }

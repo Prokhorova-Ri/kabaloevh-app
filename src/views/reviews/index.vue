@@ -10,18 +10,47 @@
       <Card v-for='review in reviews' :key='review.id' :item='review'/>
     </template>
   </WrapperLayout>
-  <Button text='Отправить отзыв' />
+  <Button text='Отправить отзыв' @onClick='openFormRequest(true)'/>
+  <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
+    <template #content>
+      <WrapperLayout
+        :class-list-for-height="['form', -'layout-to-top-close']"
+        background-color='white'
+        border-radius='0'
+        padding='10px 15px'
+      >
+        <template #content>
+          <RequestForm>
+            <template #name>
+              <h2>name</h2>
+            </template>
+            <template #inputs>
+              <StandartInput :schemas='valueFromRequest'/>
+            </template>
+            <template #buttons>
+              <Button :simple='isForm' text='Получить скидку'/>
+            </template>
+          </RequestForm>
+        </template>
+      </WrapperLayout>
+    </template>
+  </LayoutToTop>
 </template>
 
 <script>
 import Button from '../../components/Universal/Button.vue'
 import WrapperLayout from '../../components/Universal/WrapperLayout.vue'
 import Card from '../../components/Cards/Review.vue'
-import { reactive } from 'vue'
+import StandartInput from '../../../src/utils/inputs/standartInput.vue'
+import { valueFromRequest } from '../../utils/Inputs/dictInputs'
+import LayoutToTop from '../../components/Universal/LayoutToTop.vue'
+import RequestForm from '../../components/Universal/RequestForm.vue'
+import { reactive, ref } from 'vue'
 export default {
   name: 'index',
-  components: { WrapperLayout, Button, Card },
+  components: { StandartInput, LayoutToTop, RequestForm, WrapperLayout, Button, Card },
   setup () {
+    const isForm = ref(false)
     const reviews = reactive([
       { id: 0, name: 'Олег П.', date: '04.03.2023', stars: { user: 3, max: 5 }, text: 'Ну я даже хуй знает, такое себе. 0 из 10' },
       { id: 1, name: 'Илья Лесунов', date: '02.04.2023', stars: { user: 5, max: 5 }, text: 'Порядочные люди работают. Забыл взять сдачи и уехал, не маленькая сумма. Позже приехал, дали сдачи и извинились даже. Последние 10 лет только здесь обслуживаюсь.' },
@@ -30,7 +59,14 @@ export default {
       { id: 4, name: 'Вася Пупкин', date: '14.04.2023', stars: { user: 1, max: 5 }, text: 'Все очень плохо. За работу берут хорошие деньги а результат нулевой . Раныше хорошо делали , сейчас ооочень плохо . Наверно зажрались . Общем не буду к ним ездить' },
       { id: 5, name: 'Вася Пупкин', date: '14.04.2023', stars: { user: 1, max: 5 }, text: 'Все очень плохо. За работу берут хорошие деньги а результат нулевой . Раныше хорошо делали , сейчас ооочень плохо . Наверно зажрались . Общем не буду к ним ездить' },
     ])
-    return { reviews }
+
+    const openFormRequest = (status) => {
+      // ФОРМИЮ СПИСОК ВЫБРАННЫХ В МАССИВ
+      console.log('openFormRequest')
+      isForm.value = status
+    }
+
+    return { reviews, isForm, openFormRequest, valueFromRequest }
   }
 }
 </script>

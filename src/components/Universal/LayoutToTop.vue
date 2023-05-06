@@ -8,23 +8,14 @@
       <template v-if='show'>
         <div class='layout-to-top-close' />
         <div class='layout-to-top-middle'>
-          <WrapperLayout
-            :class-list-for-height="['home-title', 'home-offer']"
-            background-color='white'
-            border-radius='0'
-            padding='10px 15px'
-          >
-            <template #content>
-              <slot name='content'>Передайте контент</slot>
-            </template>
-          </WrapperLayout>
+          <slot name='content'>Передайте контент</slot>
         </div>
       </template>
     </div>
 </template>
 
 <script>
-import { watch, ref, onMounted } from 'vue'
+import { watch, ref } from 'vue'
 import WrapperLayout from '../../components/Universal/WrapperLayout.vue'
 export default {
   name: 'LayoutToTop',

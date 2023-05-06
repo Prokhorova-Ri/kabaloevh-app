@@ -54,11 +54,27 @@
     <Button :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
     <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
       <template #content>
-        <SelectParamsLayout :select-filters-list='select'/>
-        <form class='form'>
-          <StandartInput :schemas='valueFromRequest'/>
-          <button>Отправить</button>
-        </form>
+        <WrapperLayout
+          :class-list-for-height="['select-params', -'layout-to-top-close']"
+          background-color='white'
+          border-radius='0'
+          padding='10px 15px'
+        >
+          <template #content>
+            <SelectParamsLayout :select-filters-list='select'/>
+            <RequestForm>
+              <template #name>
+                <h2>name</h2>
+              </template>
+              <template #inputs>
+                <StandartInput :schemas='valueFromRequest'/>
+              </template>
+              <template #buttons>
+                <Button :simple='isForm' text='Получить скидку'/>
+              </template>
+            </RequestForm>
+          </template>
+        </WrapperLayout>
       </template>
     </LayoutToTop>
   </div>
@@ -73,12 +89,14 @@ import StandartInput from '../../src/utils/inputs/standartInput.vue'
 import { valueFromRequest } from '../utils/Inputs/dictInputs'
 import { onMounted, ref } from 'vue'
 import LayoutToTop from '../components/Universal/LayoutToTop.vue'
+import RequestForm from '../components/Universal/RequestForm.vue'
 export default {
   name: 'Home',
-  components: { LayoutToTop, WrapperLayout, Button,  StandartInput, SelectParamsLayout },
+  components: { RequestForm, LayoutToTop, WrapperLayout, Button,  StandartInput, SelectParamsLayout },
   setup() {
     const isForm = ref(false)
     const filter = usePriceFilter()
+
     const {
       newFilterParamsFromDict,
       select,
@@ -157,11 +175,6 @@ export default {
       }
     }
   }
-}
-.form {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 11px 15px;
 }
 
 </style>
