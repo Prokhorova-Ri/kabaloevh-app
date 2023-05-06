@@ -1,19 +1,21 @@
 <template>
-  <div ref='layoutToTop' class='layout-to-top'>
-    <div class='layout-to-top-close' />
-    <div class='layout-to-top-middle'>
-      <WrapperLayout
-        :class-list-for-height="['select-params', 'form']"
-        background-color='white'
-        border-radius='0'
-        @updateHeight='setNewHeight'
-        padding='10px 15px'
-      >
-        <template #content>
-          <slot name='content'>Передайте контент</slot>
-        </template>
-      </WrapperLayout>
-    </div>
+  <div ref='layoutToTop' class='layout-to-top' >
+    <template v-if='active'>
+      <div class='layout-to-top-close' />
+      <div class='layout-to-top-middle'>
+        <WrapperLayout
+          :class-list-for-height="['home-title', 'home-offer']"
+          background-color='white'
+          border-radius='0'
+          @updateHeight='setNewHeight'
+          padding='10px 15px'
+        >
+          <template #content>
+            <slot name='content'>Передайте контент</slot>
+          </template>
+        </WrapperLayout>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -35,8 +37,7 @@ export default {
     let height = ref('0px')
 
     watch(() => props?.active, () => {
-      // layoutToTop.value.style.height = `${height.value}px`
-      layoutToTop.value.style.bottom = `${height.value}px`
+      layoutToTop.value.style.height = `${height.value}px`
       layoutToTop.value.classList.add('layout-to-top-active')
     })
 
@@ -90,45 +91,57 @@ export default {
 <style lang='scss' scoped>
   .layout-to-top {
     position: absolute;
+    bottom: 0;
     left: 0;
-    right: 0;
-    background: white;
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform 1s ease;
     z-index: 99;
-    overflow: auto;
-
-    &-close {
-      width: 30px;
-      height: 3px;
-      border-radius: 10px;
-      background: #333333;
-      margin: 20px 0;
-      position: relative;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
     &-active {
-      animation: toTop .7s;
+      transform: translateY(0);
     }
   }
-
-  @keyframes toTop {
-    0% {
-      bottom: 0;
-    }
-    100% {
-      bottom: 50%;
-    }
-  }
-
-  @keyframes toBottom {
-    0% {
-      padding: 20px 10px;
-      top: 20px;
-    }
-    100% {
-      padding: 0 0;
-      top: 100%;
-      display: none;
-    }
-  }
+  //.layout-to-top {
+  //  position: absolute;
+  //  left: 0;
+  //  right: 0;
+  //  background: white;
+  //  z-index: 99;
+  //  overflow: auto;
+  //
+  //  &-close {
+  //    width: 30px;
+  //    height: 3px;
+  //    border-radius: 10px;
+  //    background: #333333;
+  //    margin: 20px 0;
+  //    position: relative;
+  //    left: 50%;
+  //    transform: translate(-50%, -50%);
+  //  }
+  //  &-active {
+  //    animation: toTop .7s;
+  //  }
+  //}
+  //
+  //@keyframes toTop {
+  //  0% {
+  //    bottom: 0;
+  //  }
+  //  100% {
+  //    bottom: 50%;
+  //  }
+  //}
+  //
+  //@keyframes toBottom {
+  //  0% {
+  //    padding: 20px 10px;
+  //    top: 20px;
+  //  }
+  //  100% {
+  //    padding: 0 0;
+  //    top: 100%;
+  //    display: none;
+  //  }
+  //}
 </style>
