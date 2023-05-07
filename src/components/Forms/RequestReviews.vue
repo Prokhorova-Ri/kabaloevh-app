@@ -13,21 +13,26 @@
           v-if='item.view.includes("textarea")'
           :schema='item'
         />
+        <ReviewStars
+          v-if='item.view.includes("stars")'
+          :schema='item'
+        />
       </div>
     </div>
-    <Button margin='15px 0' text='Отправить' />
+    <Button margin='10px 0 0 0px' text='Отправить' />
   </form>
 </template>
 
 <script>
 import Button from '../Universal/Button.vue'
 import { valueFormRequestReviews } from '../../utils/SchemaInputs/dicts.js'
-import Input from '../../components/Universal/StandartInput.vue'
-import TextArea from '../../components/Universal/StandartTextArea.vue'
+import Input from '../Universal/Inputs/Input.vue'
+import TextArea from '../Universal/Inputs/TextArea.vue'
+import ReviewStars from '../Universal/Inputs/ReviewStars.vue'
 import { reactive } from 'vue'
 export default {
   name: 'RequestReviews',
-  components: { Button, Input, TextArea },
+  components: { ReviewStars, Button, Input, TextArea },
   setup() {
 
     const formValues = reactive({

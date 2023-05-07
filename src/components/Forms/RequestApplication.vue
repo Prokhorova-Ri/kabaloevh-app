@@ -9,13 +9,13 @@
         :schema='item'
       />
     </div>
-    <Button margin='15px 0' text='Отправить'/>
+    <Button margin='10px 0 0 0px' text='Отправить'/>
   </form>
 </template>
 
 <script>
 import { valueFormRequestSale } from '../../utils/SchemaInputs/dicts.js'
-import Input from '../../components/Universal/StandartInput.vue'
+import Input from '../Universal/Inputs/Input.vue'
 import Button from '../Universal/Button.vue'
 import { reactive } from 'vue'
 export default {

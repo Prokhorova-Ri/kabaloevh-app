@@ -31,7 +31,7 @@
 import Button from '../../components/Universal/Button.vue'
 import WrapperLayout from '../../components/Universal/WrapperLayout.vue'
 import Card from '../../components/Cards/Review.vue'
-import StandartInput from '../../components/Universal/StandartInput.vue'
+import StandartInput from '../../components/Universal/Inputs/Input.vue'
 import LayoutToTop from '../../components/Universal/LayoutToTop.vue'
 import FormRequestReview from '../../components/Forms/RequestReviews.vue'
 import { reactive, ref } from 'vue'

@@ -36,5 +36,10 @@ export const valueFormRequestReviews = [
     type: 'text',
     key: 'comment',
     answer: ''
+  },
+  {
+    view: 'stars',
+    max: 5,
+    answer: 0
   }
 ]
