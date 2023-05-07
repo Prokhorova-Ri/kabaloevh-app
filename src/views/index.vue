@@ -128,8 +128,9 @@ export default {
   }
   &-filter {
     padding: 39px 15px;
-    background: rgba(131, 134, 214, 0.8);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    background: #fbfcf6;
+    //background: rgba(131, 134, 214, 0.8);
+    //box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     margin: 0 0 40px 0;
     &-title {

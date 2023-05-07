@@ -39,6 +39,7 @@ export const valueFormRequestReviews = [
   },
   {
     view: 'stars',
+    key: 'star',
     max: 5,
     answer: 0
   }
