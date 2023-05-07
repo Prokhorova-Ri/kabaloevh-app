@@ -1,20 +1,19 @@
 <template>
   <input
-    v-for='(item, index) in schemas'
-    :key='index'
-    :placeholder='item.placeholder'
+    v-model='schema.answer'
+    :placeholder='schema.placeholder'
+    :type='schema.type'
     class='input'
   />
-<!--  {{schemas}}-->
 </template>
 
 <script>
 export default {
   name: 'standartInput',
   props: {
-    schemas: {
-      type: Array,
-      default: () => []
+    schema: {
+      type: Object,
+      default: () => {}
     }
   }
 }

@@ -86,6 +86,7 @@ export default {
       width: 100%;
       display: flex;
       align-items: flex-end;
+      z-index: 98;
       background: rgba(0,0,0, 0.3);
     }
   }

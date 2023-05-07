@@ -64,12 +64,7 @@
             <div style='margin: 0 0 20px 0'>
               <SelectParamsLayout :select-filters-list='select'/>
             </div>
-            <RequestForm>
-              <template #inputs>
-                <StandartInput :schemas='valueFromRequest'/>
-              </template>
-            </RequestForm>
-            <Button margin='20px 0 10px 0' :simple='isForm' text='Отправить'/>
+            <FormRequestApplicationSale />
           </template>
         </WrapperLayout>
       </template>
@@ -82,14 +77,13 @@ import Button from '../components/Universal/Button.vue'
 import WrapperLayout from '../components/Universal/WrapperLayout.vue'
 import SelectParamsLayout from '../components/SelectParamsLayout/index.vue'
 import usePriceFilter from '../../src/utils/FiltersCore/index.js'
-import StandartInput from '../../src/utils/inputs/standartInput.vue'
-import { valueFromRequest } from '../utils/Inputs/dictInputs'
+import StandartInput from '../components/Universal/StandartInput.vue'
 import { onMounted, ref } from 'vue'
 import LayoutToTop from '../components/Universal/LayoutToTop.vue'
-import RequestForm from '../components/Universal/RequestForm.vue'
+import FormRequestApplicationSale from '../components/Forms/RequestApplication.vue'
 export default {
   name: 'Home',
-  components: { RequestForm, LayoutToTop, WrapperLayout, Button,  StandartInput, SelectParamsLayout },
+  components: { FormRequestApplicationSale, LayoutToTop, WrapperLayout, Button,  StandartInput, SelectParamsLayout },
   setup() {
     const isForm = ref(false)
     const filter = usePriceFilter()
@@ -116,7 +110,6 @@ export default {
     return {
       select,
       newFilterParamsFromDict,
-      valueFromRequest,
       isForm,
       setNewParamsFilterForType,
       setNewParamsFilterForPrice,

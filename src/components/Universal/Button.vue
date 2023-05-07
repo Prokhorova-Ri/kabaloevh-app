@@ -2,6 +2,7 @@
   <button
     class='button'
     :style="`margin: ${margin}`"
+    :type='type'
     @click='onClickButton'
   >
     {{ text }}
@@ -25,6 +26,10 @@ export default {
     simple: {
       type: Boolean,
       default: true
+    },
+    type: {
+      type: String,
+      default: 'submit'
     }
   },
   setup(props, context) {

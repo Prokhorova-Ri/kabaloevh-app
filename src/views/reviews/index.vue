@@ -20,17 +20,7 @@
         padding='10px 15px'
       >
         <template #content>
-          <RequestForm>
-            <template #name>
-              <h2>name</h2>
-            </template>
-            <template #inputs>
-              <StandartInput :schemas='valueFromRequest'/>
-            </template>
-            <template #buttons>
-              <Button :simple='isForm' text='Получить скидку'/>
-            </template>
-          </RequestForm>
+          <FormRequestReview />
         </template>
       </WrapperLayout>
     </template>
@@ -41,14 +31,13 @@
 import Button from '../../components/Universal/Button.vue'
 import WrapperLayout from '../../components/Universal/WrapperLayout.vue'
 import Card from '../../components/Cards/Review.vue'
-import StandartInput from '../../../src/utils/inputs/standartInput.vue'
-import { valueFromRequest } from '../../utils/Inputs/dictInputs'
+import StandartInput from '../../components/Universal/StandartInput.vue'
 import LayoutToTop from '../../components/Universal/LayoutToTop.vue'
-import RequestForm from '../../components/Universal/RequestForm.vue'
+import FormRequestReview from '../../components/Forms/RequestReviews.vue'
 import { reactive, ref } from 'vue'
 export default {
   name: 'index',
-  components: { StandartInput, LayoutToTop, RequestForm, WrapperLayout, Button, Card },
+  components: { FormRequestReview, StandartInput, LayoutToTop, WrapperLayout, Button, Card },
   setup () {
     const isForm = ref(false)
     const reviews = reactive([
@@ -66,7 +55,7 @@ export default {
       isForm.value = status
     }
 
-    return { reviews, isForm, openFormRequest, valueFromRequest }
+    return { reviews, isForm, openFormRequest }
   }
 }
 </script>
