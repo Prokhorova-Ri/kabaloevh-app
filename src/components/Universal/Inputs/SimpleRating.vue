@@ -36,7 +36,6 @@ export default {
         }
       })
       props.schema.answer = count || 0
-      console.log('props.schema', props.schema)
     }
 
     return {
