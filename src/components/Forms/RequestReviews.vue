@@ -42,14 +42,14 @@ export default {
 
     const formValues = reactive({
       name: '',
-      comment: ''
+      comment: '',
+      star: 0
     })
 
     const sendFormReviews = () => {
       valueFormRequestReviews.forEach((item) => {
         formValues[item.key] = item.answer
       })
-      console.log('sendFormReviews', formValues)
     }
 
     return {

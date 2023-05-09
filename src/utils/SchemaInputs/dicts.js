@@ -27,20 +27,23 @@ export const valueFormRequestReviews = [
     view: 'stars',
     key: 'star',
     max: 5,
-    answer: 0
+    answer: 0,
+    valid: false
   },
   {
     view: 'input',
     placeholder: 'Имя',
     type: 'text',
     key: 'name',
-    answer: ''
+    answer: '',
+    valid: false
   },
   {
     view: 'textarea',
     placeholder: 'Комментарий',
     type: 'text',
     key: 'comment',
-    answer: ''
+    answer: '',
+    valid: false
   }
 ]
