@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { valueFormRequestSale } from '../../utils/SchemaInputs/dicts.js'
+import { valueFormRequestSale } from '../../utils/useSchemaInputs'
 import Input from '../Universal/Inputs/Input.vue'
 import Button from '../Universal/Button.vue'
 import { reactive } from 'vue'

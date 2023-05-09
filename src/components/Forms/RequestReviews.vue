@@ -1,8 +1,8 @@
 <template>
-  <form @submit.prevent='sendFormReviews'>
+  <form>
     <div class='form'>
       <div
-        v-for='(item, index) in valueFormRequestReviews'
+        v-for='(item, index) in useSchemaForm'
         :key='index'
       >
         <div
@@ -30,11 +30,11 @@
 
 <script>
 import Button from '../Universal/Button.vue'
-import { valueFormRequestReviews } from '../../utils/SchemaInputs/dicts.js'
+import useSchemaInputs from '../../utils/useSchemaInputs.js'
 import Input from '../Universal/Inputs/Input.vue'
 import TextArea from '../Universal/Inputs/TextArea.vue'
 import SimpleRating from '../Universal/Inputs/SimpleRating.vue'
-import { reactive } from 'vue'
+import { reactive, ref, watch } from 'vue'
 export default {
   name: 'RequestReviews',
   components: { SimpleRating, Button, Input, TextArea },
@@ -46,15 +46,26 @@ export default {
       star: 0
     })
 
-    const sendFormReviews = () => {
-      valueFormRequestReviews.forEach((item) => {
-        formValues[item.key] = item.answer
-      })
-    }
+    const useSchema = useSchemaInputs()
+    const {
+      getValuesFromReview,
+      checkInputValidate
+    } = useSchema
+    const useSchemaForm = ref(getValuesFromReview())
+    // const sendFormReviews = () => {
+    //   valueFormRequestReviews.forEach((item) => {
+    //     formValues[item.key] = item.answer
+    //   })
+    // }
+    //
+
+    watch(() => useSchemaForm.value, (value) => {
+      console.log('Есть изменения', value)
+      checkInputValidate()
+    }, { deep: true })
 
     return {
-      valueFormRequestReviews,
-      sendFormReviews
+      useSchemaForm
     }
   }
 }

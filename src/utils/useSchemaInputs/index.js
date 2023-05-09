@@ -47,3 +47,17 @@ export const valueFormRequestReviews = [
     valid: false
   }
 ]
+
+import { ref } from 'vue'
+
+export default function() {
+  const valueFormRequestReviews = ref(valueFormRequestReviews)
+
+  const getValuesFromReview = () => {
+    return valueFormRequestReviews
+  }
+
+  return {
+    getValuesFromReview
+  }
+}
