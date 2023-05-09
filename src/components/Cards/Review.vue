@@ -4,12 +4,12 @@
       <img
         v-for='(index) in item.stars.user'
         :key='index'
-        src='src/assets/images/icons/star-full.svg'
+        src='src/assets/images/icons/star-full.png'
       />
       <img
         v-for='(index) in starDefault'
         :key='index'
-        src='src/assets/images/icons/star.svg'>
+        src='src/assets/images/icons/star.png'>
     </div>
     <p v-if='item && item.name' class='card-review-name'>{{ item.name }}</p>
     <p v-if='item && item.date' class='card-review-date'>{{ item.date }}</p>
@@ -29,7 +29,7 @@ export default {
   },
   setup(props) {
     return {
-      starDefault: props.item?.stars?.max - props.item?.stars?.user
+      starDefault: props.item?.stars?.max - props.item?.stars?.user || 0
     }
   }
 }

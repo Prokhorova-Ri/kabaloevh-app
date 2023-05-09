@@ -24,6 +24,12 @@ export const valueFormRequestSale = [
 
 export const valueFormRequestReviews = [
   {
+    view: 'stars',
+    key: 'star',
+    max: 5,
+    answer: 0
+  },
+  {
     view: 'input',
     placeholder: 'Имя',
     type: 'text',
@@ -36,11 +42,5 @@ export const valueFormRequestReviews = [
     type: 'text',
     key: 'comment',
     answer: ''
-  },
-  {
-    view: 'stars',
-    key: 'star',
-    max: 5,
-    answer: 0
   }
 ]
