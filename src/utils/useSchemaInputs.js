@@ -1,72 +1,30 @@
-export const valueFormRequestSale = [
-  {
-    view: 'input',
-    placeholder: 'Укажите адрес',
-    type: 'text',
-    key: 'address',
-    answer: '',
-  },
-  {
-    view: 'input',
-    placeholder: 'Имя',
-    type: 'text',
-    key: 'name',
-    answer: '',
-  },
-  {
-    view: 'input',
-    placeholder: 'Номер телефона',
-    type: 'text',
-    key: 'number',
-    answer: ''
-  }
-]
+import { reactive, ref } from 'vue'
+import {
+  valueFormRequestSale,
+  valueFormRequestReviews } from './dictInputs.js'
 
-export const valueFormRequestReviews = [
-  {
-    view: 'stars',
-    key: 'star',
-    max: 5,
-    answer: 0
-  },
-  {
-    view: 'input',
-    placeholder: 'Имя',
-    type: 'text',
-    key: 'name',
-    answer: '',
-    valid: false
-  },
-  {
-    view: 'textarea',
-    placeholder: 'Комментарий',
-    type: 'text',
-    key: 'comment',
-    answer: '',
-    valid: false
-  }
-]
-
-import { ref } from 'vue'
 export default function() {
 
-  const reviewsValueInput = ref(valueFormRequestReviews)
+  const inputValuesData = reactive({
+    review: valueFormRequestReviews,
+    application: valueFormRequestSale
+  })
 
+  // Дописать полноценную валидацию input
   const checkInputValidate = (payload) => {
     if (typeof payload.answer === 'string') {
       payload.answer === '' ? payload.valid = true : payload.valid = false
     }
-    if (typeof payload.answer === 'number') {
-      payload.answer <= 0 ? payload.valid = true : payload.valid = false
-    }
   }
 
-  const checkAllValidateValue = () => {
+  // Дописать полноценную валидацию input
+  const checkAllValidateValue = (key) => {
+    console.log('key', key)
     const status =
-      (reviewsValueInput.value.every(value => value.answer !== "")) &&
-      (reviewsValueInput.value.every(value => value?.valid !== true))
+      (inputValuesData[key].every(value => value.answer !== "")) &&
+      (inputValuesData[key].every(value => value?.valid !== true))
     if (!status) {
-      reviewsValueInput.value.forEach((item) => {
+      inputValuesData[key].forEach((item) => {
         if (typeof item.answer === 'string') {
           item.valid = true
         }
@@ -76,7 +34,8 @@ export default function() {
   }
 
   return {
-    reviewsValueInput,
+    reviewsValueInput: inputValuesData.review,
+    applicationValueInput: inputValuesData.application,
     checkInputValidate,
     checkAllValidateValue
   }

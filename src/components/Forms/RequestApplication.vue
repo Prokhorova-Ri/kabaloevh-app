@@ -1,7 +1,7 @@
 <template>
-  <form @submit.prevent='sendFormApplicationSale' class='form'>
+  <form @submit.prevent='sendFormApplication' class='form'>
     <div
-      v-for='(item, index) in valueFormRequestSale'
+      v-for='(item, index) in useSchemaForm'
       :key='index'
     >
       <Input
@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import { valueFormRequestSale } from '../../utils/useSchemaInputs'
+import useSchemaInputs from '../../utils/useSchemaInputs.js'
 import Input from '../Universal/Inputs/Input.vue'
 import Button from '../Universal/Button.vue'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 export default {
   name: 'RequestApplicationSale',
   components: { Button, Input },
@@ -29,16 +29,27 @@ export default {
       number: ''
     })
 
-    const sendFormApplicationSale = () => {
-      valueFormRequestSale.forEach((item) => {
-        formValues[item.key] = item.answer
-      })
-      console.log('sendFormApplicationSale', formValues)
+    const useSchema = useSchemaInputs()
+
+    const {
+      applicationValueInput,
+      checkAllValidateValue
+    } = useSchema
+
+    const useSchemaForm = ref(applicationValueInput)
+
+    const sendFormApplication = () => {
+      if (checkAllValidateValue('application')) {
+        useSchemaForm.value.forEach((item) => {
+          formValues[item.key] = item.answer
+        })
+        console.log('Отправленно', formValues)
+      }
     }
 
     return {
-      valueFormRequestSale,
-      sendFormApplicationSale
+      useSchemaForm,
+      sendFormApplication
     }
   }
 }

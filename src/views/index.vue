@@ -64,7 +64,7 @@
             <div style='margin: 0 0 20px 0'>
               <SelectParamsLayout :select-filters-list='select'/>
             </div>
-<!--            <FormRequestApplicationSale />-->
+            <FormRequestApplicationSale />
           </template>
         </WrapperLayout>
       </template>

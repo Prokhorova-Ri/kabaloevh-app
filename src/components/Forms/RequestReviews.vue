@@ -1,7 +1,6 @@
 <template>
   <form @submit.prevent='sendFormReview'>
     <div class='form'>
-      {{useSchemaForm}}
       <div
         v-for='(item, index) in useSchemaForm'
         :key='index'
@@ -37,7 +36,7 @@ import useSchemaInputs from '../../utils/useSchemaInputs.js'
 import Input from '../Universal/Inputs/Input.vue'
 import TextArea from '../Universal/Inputs/TextArea.vue'
 import SimpleRating from '../Universal/Inputs/SimpleRating.vue'
-import { reactive, ref, watch } from 'vue'
+import { reactive, ref } from 'vue'
 export default {
   name: 'RequestReviews',
   components: { SimpleRating, Button, Input, TextArea },
@@ -59,11 +58,11 @@ export default {
     const useSchemaForm = ref(reviewsValueInput)
 
     const sendFormReview = () => {
-      console.log('checkAllValidateValue()', checkAllValidateValue())
-      if (checkAllValidateValue()) {
-        console.log('Отправленно')
-      } else {
-        console.log('Пройдите валидайцию')
+      if (checkAllValidateValue('review')) {
+        useSchemaForm.value.forEach((item) => {
+          formValues[item.key] = item.answer
+        })
+        console.log('Отправленно', formValues)
       }
     }
 
