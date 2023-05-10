@@ -59,6 +59,7 @@ export default {
     const useSchemaForm = ref(reviewsValueInput)
 
     const sendFormReview = () => {
+      console.log('checkAllValidateValue()', checkAllValidateValue())
       if (checkAllValidateValue()) {
         console.log('Отправленно')
       } else {

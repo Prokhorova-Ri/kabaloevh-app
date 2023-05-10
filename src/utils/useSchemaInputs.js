@@ -27,8 +27,7 @@ export const valueFormRequestReviews = [
     view: 'stars',
     key: 'star',
     max: 5,
-    answer: 0,
-    valid: false
+    answer: 0
   },
   {
     view: 'input',
@@ -64,11 +63,13 @@ export default function() {
 
   const checkAllValidateValue = () => {
     const status =
-      reviewsValueInput.value.every(value => value.answer !== "") &&
-      reviewsValueInput.value.every(value => value.valid === false)
+      (reviewsValueInput.value.every(value => value.answer !== "")) &&
+      (reviewsValueInput.value.every(value => value?.valid !== true))
     if (!status) {
       reviewsValueInput.value.forEach((item) => {
-        item.valid = true
+        if (typeof item.answer === 'string') {
+          item.valid = true
+        }
       })
     }
     return status
