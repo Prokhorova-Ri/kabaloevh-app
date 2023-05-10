@@ -50,20 +50,33 @@ export const valueFormRequestReviews = [
 
 import { ref } from 'vue'
 export default function() {
+
   const reviewsValueInput = ref(valueFormRequestReviews)
 
-  const getValuesFromReview = () => {
-    return reviewsValueInput
+  const checkInputValidate = (payload) => {
+    if (typeof payload.answer === 'string') {
+      payload.answer === '' ? payload.valid = true : payload.valid = false
+    }
+    if (typeof payload.answer === 'number') {
+      payload.answer <= 0 ? payload.valid = true : payload.valid = false
+    }
   }
 
-  const checkInputValidate = () => {
-    reviewsValueInput.value.forEach((item) => {
-      console.log('item', item)
-    })
+  const checkAllValidateValue = () => {
+    const status =
+      reviewsValueInput.value.every(value => value.answer !== "") &&
+      reviewsValueInput.value.every(value => value.valid === false)
+    if (!status) {
+      reviewsValueInput.value.forEach((item) => {
+        item.valid = true
+      })
+    }
+    return status
   }
 
   return {
-    getValuesFromReview,
-    checkInputValidate
+    reviewsValueInput,
+    checkInputValidate,
+    checkAllValidateValue
   }
 }

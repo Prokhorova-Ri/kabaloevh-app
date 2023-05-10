@@ -1,6 +1,7 @@
 <template>
-  <form>
+  <form @submit.prevent='sendFormReview'>
     <div class='form'>
+      {{useSchemaForm}}
       <div
         v-for='(item, index) in useSchemaForm'
         :key='index'
@@ -17,10 +18,12 @@
         <Input
           v-if='item.view.includes("input")'
           :schema='item'
+          :key='item.key'
         />
         <TextArea
           v-if='item.view.includes("textarea")'
           :schema='item'
+          :key='item.key'
         />
       </div>
     </div>
@@ -47,25 +50,25 @@ export default {
     })
 
     const useSchema = useSchemaInputs()
-    const {
-      getValuesFromReview,
-      checkInputValidate
-    } = useSchema
-    const useSchemaForm = ref(getValuesFromReview())
-    // const sendFormReviews = () => {
-    //   valueFormRequestReviews.forEach((item) => {
-    //     formValues[item.key] = item.answer
-    //   })
-    // }
-    //
 
-    watch(() => useSchemaForm.value, (value) => {
-      console.log('Есть изменения', value)
-      checkInputValidate()
-    }, { deep: true })
+    const {
+      reviewsValueInput,
+      checkAllValidateValue
+    } = useSchema
+
+    const useSchemaForm = ref(reviewsValueInput)
+
+    const sendFormReview = () => {
+      if (checkAllValidateValue()) {
+        console.log('Отправленно')
+      } else {
+        console.log('Пройдите валидайцию')
+      }
+    }
 
     return {
-      useSchemaForm
+      useSchemaForm,
+      sendFormReview
     }
   }
 }

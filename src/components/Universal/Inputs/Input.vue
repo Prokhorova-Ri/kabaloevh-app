@@ -5,10 +5,12 @@
     :type='schema.type'
     class='input'
   />
+  <p v-if='schema.valid' class='input-error'>*Поле не должно быть пустым</p>
 </template>
 
 <script>
-
+import { watch } from 'vue'
+import useSchemaInputs from '../../../utils/useSchemaInputs'
 export default {
   name: 'standartInput',
   props: {
@@ -16,6 +18,17 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+  setup (props) {
+
+    const useSchema = useSchemaInputs()
+    const { checkInputValidate } = useSchema
+
+    watch(() => props.schema, (value) => {
+      checkInputValidate(value)
+    }, { deep: true })
+
+    return {}
   }
 }
 </script>
@@ -30,6 +43,11 @@ export default {
     font-size: 14px;
     &:focus {
       outline: none;
+    }
+    &-error {
+      font-size: 14px;
+      margin: 2px 0 10px 0;
+      color: #ce4040;
     }
   }
 </style>
