@@ -75,7 +75,7 @@ export default {
         //background-color: transparent;
         //border-radius: 10px;
         margin: 0 0 40px 0;
-        height: 236px;
+        height: 234px;
         &-title {
           font-size: 18px;
           margin: 0 0 10px 0;

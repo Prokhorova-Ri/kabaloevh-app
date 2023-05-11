@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import useSchemaInputs from '../../utils/useSchemaInputs'
 export default {
   name: 'Button',
   emits: ['onClick'],
@@ -34,7 +34,14 @@ export default {
   },
   setup(props, context) {
 
+    const useSchema = useSchemaInputs()
+
+    const {
+      clearAllError
+    } = useSchema
+
     const onClickButton = () => {
+      clearAllError()
       context.emit('onClick')
     }
 

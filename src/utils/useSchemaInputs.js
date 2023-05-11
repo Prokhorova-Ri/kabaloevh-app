@@ -1,4 +1,4 @@
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import {
   valueFormRequestSale,
   valueFormRequestReviews } from './dictInputs.js'
@@ -15,6 +15,19 @@ export default function() {
     if (typeof payload.answer === 'string') {
       payload.answer === '' ? payload.valid = true : payload.valid = false
     }
+  }
+  // Дописать полноценную валидацию input
+  const clearAllError = () => {
+    inputValuesData['review'].forEach((item) => {
+      if (typeof item.answer === 'string') {
+        item.valid = false
+      }
+    })
+    inputValuesData['application'].forEach((item) => {
+      if (typeof item.answer === 'string') {
+        item.valid = false
+      }
+    })
   }
 
   // Дописать полноценную валидацию input
@@ -36,6 +49,7 @@ export default function() {
     reviewsValueInput: inputValuesData.review,
     applicationValueInput: inputValuesData.application,
     checkInputValidate,
-    checkAllValidateValue
+    checkAllValidateValue,
+    clearAllError
   }
 }
