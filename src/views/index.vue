@@ -1,12 +1,13 @@
 <template>
   <div>
     <h2 class="home-title ">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
+<!--    :class-list-for-height="['home-title', 'button', 'menu']"-->
     <WrapperLayout
-      :class-list-for-height="['home-title', 'button', 'menu']"
-      background-color='transparent'
-      border-radius='0'
+      :class-list-for-height="['menu', 'home-title']"
+      background-color='white'
+      border-radius='20px 20px 0 0'
       display='flex'
-      justify-content='center'
+      justify-content='space-evenly'
     >
       <template #content>
         <div class='home-filter'>
@@ -49,9 +50,9 @@
             <p class='home-offer-item-title'>Качество услуг шиномонтажа без переплат.</p>
           </div>
         </div>
+        <Button margin='0px' :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
       </template>
     </WrapperLayout>
-    <Button :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
     <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
       <template #content>
         <WrapperLayout
@@ -125,14 +126,15 @@ export default {
   &-title {
     margin: 20px 0 20px 0;
     text-align: center;
+    color: white;
   }
   &-filter {
-    padding: 39px 15px;
+    padding: 39px 0;
     background: #fbfcf6;
     //background: rgba(131, 134, 214, 0.8);
     //box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    margin: 0 0 40px 0;
+    //margin: 0 0 40px 0;
     &-title {
       font-weight: 600;
       font-size: 20px;
@@ -147,12 +149,15 @@ export default {
   &-offer {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
-    padding: 11px 15px;
+    padding: 11px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     &-item {
       display: grid;
       align-items: center;
       grid-template-columns: 40px 1fr;
-      margin: 0 0 11px 0;
+      //margin: 0 0 11px 0;
       gap: 16px;
       width: 100%;
       &:last-child {
@@ -162,7 +167,7 @@ export default {
         font-weight: 600;
         font-size: 16px;
         text-align: left;
-        color: #1C1E58;
+        color: black;
       }
     }
   }

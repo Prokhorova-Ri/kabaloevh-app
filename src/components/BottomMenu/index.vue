@@ -41,7 +41,8 @@ export default {
   left: 0;
   right: 0;
   width: 100%;
-  background: $darkpurple;
+  background: white;
+  //background: $darkpurple;
   &-item {
     padding: 9px 10px;
     color: $white;
