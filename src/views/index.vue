@@ -5,6 +5,8 @@
       <WrapperLayout
         :class-list-for-height="['home-title', 'button', 'menu']"
         padding='0 10px'
+        display='flex'
+        justify-content='space-around'
       >
         <template #content>
           <div class='home-filter'>
@@ -127,7 +129,7 @@ export default {
     color: white;
   }
   &-filter {
-    padding: 39px 0;
+    //padding: 39px 0;
     background: #fbfcf6;
     //background: rgba(131, 134, 214, 0.8);
     //box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -142,6 +144,9 @@ export default {
     }
     &-select {
       margin: 0 0 10px 0;
+      &:last-child {
+        margin: 0 0 20px 0;
+      }
     }
   }
   &-offer {

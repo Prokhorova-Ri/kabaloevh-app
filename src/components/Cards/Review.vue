@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 export default {
   name: 'Review',
   props: {
@@ -38,7 +37,7 @@ export default {
 <style lang='scss' scoped>
   .card-review {
     border-radius: 10px;
-    padding: 11px 11px 11px 22px;
+    padding: 11px 0;
     background: rgba(255, 255, 255, 0.8);
     position: relative;
     margin: 0 0 23px 0;

@@ -45,9 +45,10 @@ export default defineComponent({
         align-items: center;
         width: 70px;
         height: 70px;
-        background-color: $btnbg;
+        //background-color: $btnbg;
+        border: 2px solid #4f9cf9;
         border-radius: 10px;
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        //box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
       }
     }
   }

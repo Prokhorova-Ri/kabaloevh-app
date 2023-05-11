@@ -49,7 +49,9 @@ export default {
     border: none;
     width: 100%;
     padding: 13px 0;
-    background: $btnbg;
+    //background: $btnbg;
+    background: #4f9cf9;
+    color: white;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     font-weight: 600;

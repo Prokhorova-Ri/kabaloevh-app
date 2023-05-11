@@ -1,32 +1,35 @@
 <template>
-  <h1 class='contacts-title'>Контакты</h1>
-  <WrapperLayout
-    :class-list-for-height="['contacts-title', 'menu', 18]"
-    background-color='transparent'
-    border-radius='0px'
-    display='flex'
-  >
-    <template #content>
-      <div class='contacts-content-work'>
-        <p class='contacts-content-work-title'>Часы работы</p>
-        <div
-          v-for='item in dict'
-          :key='item.id'
-          class='contacts-content-work-item'>
-          <p class='contacts-content-work-item-hour'>{{ item.day }}</p>
-          <div class='contacts-content-work-item-hour-layout'>
-            <p class='contacts-content-work-item-hour'>{{ item.at }}</p>
-            -
-            <p class='contacts-content-work-item-hour'>{{ item.from }}</p>
+  <h1 class='contacts-title main-title'>Контакты</h1>
+  <div class='main-layout'>
+    <WrapperLayout
+      :class-list-for-height="['contacts-title', 'menu']"
+      background-color='transparent'
+      border-radius='0px'
+      display='flex'
+      padding='20px 0'
+    >
+      <template #content>
+        <div class='contacts-content-work'>
+          <p class='contacts-content-work-title'>Часы работы</p>
+          <div
+            v-for='item in dict'
+            :key='item.id'
+            class='contacts-content-work-item'>
+            <p class='contacts-content-work-item-hour'>{{ item.day }}</p>
+            <div class='contacts-content-work-item-hour-layout'>
+              <p class='contacts-content-work-item-hour'>{{ item.at }}</p>
+              -
+              <p class='contacts-content-work-item-hour'>{{ item.from }}</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class='contacts-content-map'>
-        <LeafletMap border-radius='10px' height="360px" />
-      </div>
-      <SocialLinks />
-    </template>
-  </WrapperLayout>
+        <div class='contacts-content-map'>
+          <LeafletMap border-radius='10px' height="360px" />
+        </div>
+        <SocialLinks />
+      </template>
+    </WrapperLayout>
+  </div>
 </template>
 
 <script>
