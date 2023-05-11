@@ -1,58 +1,56 @@
 <template>
   <div>
-    <h2 class="home-title ">Приветствуем вас в приложении "Мобильный шиномонтаж"!</h2>
-<!--    :class-list-for-height="['home-title', 'button', 'menu']"-->
-    <WrapperLayout
-      :class-list-for-height="['menu', 'home-title']"
-      background-color='white'
-      border-radius='20px 20px 0 0'
-      display='flex'
-      justify-content='space-evenly'
-    >
-      <template #content>
-        <div class='home-filter'>
-          <p class='home-filter-title'>Расчитать стоимость</p>
-          <div class='home-filter-input'>
-            <VSelect
-              :options='newFilterParamsFromDict.cites'
-              :placeholder="select.city.name"
-              @option:selected="setNewParamsFilterForType"
-              class='home-filter-select'
-            />
-            <VSelect
-              :options='newFilterParamsFromDict.typeTitle'
-              :placeholder="select.service.name"
-              @option:selected="setNewParamsFilterForTyres"
-              class='home-filter-select'
-            />
-            <VSelect
-              :options='newFilterParamsFromDict.typeTires'
-              :placeholder="select.tyres.name"
-              @option:selected="setNewParamsFilterForPrice"
-              class='home-filter-select'
-            />
+    <h2 class="home-title main-title">Главная</h2>
+    <div class='main-layout'>
+      <WrapperLayout
+        :class-list-for-height="['home-title', 'button', 'menu']"
+        padding='0 10px'
+      >
+        <template #content>
+          <div class='home-filter'>
+            <p class='home-filter-title'>Расчитать стоимость</p>
+            <div class='home-filter-input'>
+              <VSelect
+                :options='newFilterParamsFromDict.cites'
+                :placeholder="select.city.name"
+                @option:selected="setNewParamsFilterForType"
+                class='home-filter-select'
+              />
+              <VSelect
+                :options='newFilterParamsFromDict.typeTitle'
+                :placeholder="select.service.name"
+                @option:selected="setNewParamsFilterForTyres"
+                class='home-filter-select'
+              />
+              <VSelect
+                :options='newFilterParamsFromDict.typeTires'
+                :placeholder="select.tyres.name"
+                @option:selected="setNewParamsFilterForPrice"
+                class='home-filter-select'
+              />
+            </div>
+            <div>
+              Рассчет стоимости: {{ select.price.name.toLocaleString() }} руб
+            </div>
           </div>
-          <div>
-            Рассчет стоимости: {{ select.price.name.toLocaleString() }} руб
+          <div class='home-offer'>
+            <div class='home-offer-item'>
+              <img src='/src/assets/images/icons/check.svg'>
+              <p class='home-offer-item-title'>Выезд мастера в удобное время и место.</p>
+            </div>
+            <div class='home-offer-item'>
+              <img src='/src/assets/images/icons/check.svg'>
+              <p class='home-offer-item-title'>Самое современное оборудование и материалы.</p>
+            </div>
+            <div class='home-offer-item'>
+              <img src='/src/assets/images/icons/check.svg'>
+              <p class='home-offer-item-title'>Качество услуг шиномонтажа без переплат.</p>
+            </div>
           </div>
-        </div>
-        <div class='home-offer'>
-          <div class='home-offer-item'>
-            <img src='/src/assets/images/icons/check.svg'>
-            <p class='home-offer-item-title'>Выезд мастера в удобное время и место.</p>
-          </div>
-          <div class='home-offer-item'>
-            <img src='/src/assets/images/icons/check.svg'>
-            <p class='home-offer-item-title'>Самое современное оборудование и материалы.</p>
-          </div>
-          <div class='home-offer-item'>
-            <img src='/src/assets/images/icons/check.svg'>
-            <p class='home-offer-item-title'>Качество услуг шиномонтажа без переплат.</p>
-          </div>
-        </div>
-        <Button margin='0px' :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
-      </template>
-    </WrapperLayout>
+        </template>
+      </WrapperLayout>
+      <Button margin='30px 0' :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
+    </div>
     <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
       <template #content>
         <WrapperLayout

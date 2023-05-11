@@ -1,38 +1,39 @@
 <template>
   <div class='price'>
-    <h1 class='price-title'>Прайс</h1>
-    <WrapperLayout
-      :class-list-for-height="['price-title', 'button', 'menu']"
-      background-color='transparent'
-      border-radius='10px'
-      padding='15px 16px'
-    >
-      <template #content>
-        <div
-          v-for='item in dictPrice'
-          :key='item.id'
-          class='price-city'>
-          <p class='price-city-name'>{{ item.city }}</p>
+    <h1 class='price-title main-title'>Прайс</h1>
+    <div class='main-layout'>
+      <WrapperLayout
+        :class-list-for-height="['price-title', 'button', 'menu']"
+        padding='20px 10px'
+      >
+        <template #content>
           <div
-            v-for='(type, index) in item.type'
-            :key='index'
-            class='price-city-type'>
-            <p class='price-city-type-title'>{{ type.title }}</p>
+            v-for='item in dictPrice'
+            :key='item.id'
+            class='price-city'>
+            <p class='price-city-name'>{{ item.city }}</p>
             <div
-              v-for='(tires, indexTires) in type.tires'
-              :key='indexTires'
-            >
-              <div class='price-city-type-tires-layout'>
-                <p class='price-city-type-tires-item'>{{ tires.size }}</p>
-                <span class='price-city-type-tires-dot'>........................................</span>
-                <p class='price-city-type-tires-item'>{{ tires.price }}</p>
+              v-for='(type, index) in item.type'
+              :key='index'
+              class='price-city-type'>
+              <p class='price-city-type-title'>{{ type.title }}</p>
+              <div
+                v-for='(tires, indexTires) in type.tires'
+                :key='indexTires'
+              >
+                <div class='price-city-type-tires-layout'>
+                  <p class='price-city-type-tires-item'>{{ tires.size }}</p>
+                  <span class='price-city-type-tires-dot'>........................................</span>
+                  <p class='price-city-type-tires-item'>{{ tires.price }}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </template>
-    </WrapperLayout>
-    <Button text='Оставить заявку'  @onClick='openFormRequest(true)' />
+        </template>
+      </WrapperLayout>
+      <Button text='Оставить заявку'  @onClick='openFormRequest(true)' />
+    </div>
+    <!-- Нижнее меню для вызова формы   -->
     <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
       <template #content>
         <WrapperLayout
@@ -89,6 +90,7 @@ export default {
     &-title {
       margin: 20px 0;
       text-align: center;
+      color: white;
     }
     &-city {
       margin: 0 0 31px 0;

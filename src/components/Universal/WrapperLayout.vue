@@ -85,6 +85,5 @@ export default defineComponent({
     min-height: 95%;
     overflow-y: scroll;
     flex-direction: column;
-    padding: 0 15px;
   }
 </style>

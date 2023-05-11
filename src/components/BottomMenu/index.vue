@@ -41,7 +41,7 @@ export default {
   left: 0;
   right: 0;
   width: 100%;
-  background: white;
+  background: #043873;
   //background: $darkpurple;
   &-item {
     padding: 9px 10px;

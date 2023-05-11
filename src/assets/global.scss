@@ -11,13 +11,26 @@
 
 body {
   //background-image: url("./src/assets/images/bg.jpg");
-  background: #1C1E58;
+  background: #043873;
   //background-repeat: no-repeat;
   //background-size: cover;
   text-rendering: optimizelegibility;
   -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: none;
   //padding: 0 15px;
+}
+
+.main-title {
+  height: 47px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-layout {
+  background: white;
+  padding: 0 20px;
+  border-radius: 20px 20px 0 0;
 }
 
 .form {
