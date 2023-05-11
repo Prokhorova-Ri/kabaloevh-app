@@ -6,14 +6,16 @@
         :key='index'
         class='select-params-wrapper'
       >
-        <p>{{ item.code === 'price' ? 'Цена без скидки' : item.title }}:</p>
-        <span>{{ item.name }}</span>
+        <p v-if='item.code === "price"' style='text-decoration: line-through'>Цена без скидки:</p>
+        <p v-else class='select-params-price' >{{ item.title }}:</p>
+        <span v-if='item.code === "price"' style='text-decoration: line-through'>{{ item.name }}</span>
+        <span v-else>{{ item.name }}</span>
       </div>
     <div
       class='select-params-wrapper'
     >
-      <p>Цена со скидкой:</p>
-      <span>{{ discount }}</span>
+      <p class='select-params-price select-params-price__sale'>Цена со скидкой:</p>
+      <span class='select-params-price__sale'>{{ discount }}</span>
     </div>
   </div>
 </template>
@@ -55,6 +57,11 @@ export default {
       margin: 0 0 7px 0;
       &:last-child {
         margin: 0 0 0 0;
+      }
+    }
+    &-price {
+      &__sale {
+        color: #ce4040;
       }
     }
     &-title {
