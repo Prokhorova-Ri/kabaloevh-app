@@ -19,7 +19,6 @@ export default function() {
 
   // Дописать полноценную валидацию input
   const checkAllValidateValue = (key) => {
-    console.log('key', key)
     const status =
       (inputValuesData[key].every(value => value.answer !== "")) &&
       (inputValuesData[key].every(value => value?.valid !== true))

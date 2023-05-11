@@ -27,7 +27,7 @@
         />
       </div>
     </div>
-    <Button margin='10px 0 25px 0px' text='Отправить' />
+    <Button margin='10px 0 10px 0px' text='Отправить' />
   </form>
 </template>
 

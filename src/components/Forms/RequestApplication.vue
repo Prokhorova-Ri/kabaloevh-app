@@ -1,17 +1,19 @@
 <template>
-  <form @submit.prevent='sendFormApplication' class='form main-layout-parent'>
-    <p class='form-title'>Заполните форму:</p>
-    <div
-      v-for='(item, index) in useSchemaForm'
-      :key='index'
-    >
-      <Input
-        v-if='item.view.includes("input")'
-        :schema='item'
-      />
+  <form @submit.prevent='sendFormApplication' class='form'>
+    <div class='form main-layout-parent'>
+      <p class='form-title'>Заполните форму:</p>
+      <div
+        v-for='(item, index) in useSchemaForm'
+        :key='index'
+      >
+        <Input
+          v-if='item.view.includes("input")'
+          :schema='item'
+        />
+      </div>
     </div>
+    <Button margin='10px 0 10px 0px' text='Отправить'/>
   </form>
-  <Button margin='10px 0 25px 0px' text='Отправить'/>
 </template>
 
 <script>

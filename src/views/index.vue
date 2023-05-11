@@ -144,7 +144,7 @@ export default {
     background: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
-    height: 208px;
+    height: 207px;
     justify-content: inherit;
     gap: 15px;
     &-item {

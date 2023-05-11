@@ -2,26 +2,31 @@
   <h1 class='contacts-title main-title'>Контакты</h1>
   <div class='main-layout'>
     <WrapperLayout
-      :class-list-for-height="['contacts-title', 'menu', 'social-links']"
+      :class-list-for-height="['contacts-title', 'menu', 'social-links', -20]"
       padding='20px 0'
     >
       <template #content>
         <div class='contacts-content-work main-layout-parent'>
           <p class='contacts-content-work-title'>Часы работы</p>
-          <div
-            v-for='item in dict'
-            :key='item.id'
-            class='contacts-content-work-item'>
-            <p class='contacts-content-work-item-hour'>{{ item.day }}</p>
-            <div class='contacts-content-work-item-hour-layout'>
-              <p class='contacts-content-work-item-hour'>{{ item.at }}</p>
-              -
-              <p class='contacts-content-work-item-hour'>{{ item.from }}</p>
+          <div style='height: 236px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;'>
+            <div
+              v-for='item in dict'
+              :key='item.id'
+              class='contacts-content-work-item'>
+              <p class='contacts-content-work-item-hour'>{{ item.day }}</p>
+              <div class='contacts-content-work-item-hour-layout'>
+                <p class='contacts-content-work-item-hour'>{{ item.at }}</p>
+                -
+                <p class='contacts-content-work-item-hour'>{{ item.from }}</p>
+              </div>
             </div>
           </div>
         </div>
         <div class='contacts-content-map'>
-          <LeafletMap border-radius='10px' height="280px" />
+          <LeafletMap border-radius='20px' height="280px" />
         </div>
       </template>
     </WrapperLayout>
@@ -70,6 +75,7 @@ export default {
         //background-color: transparent;
         //border-radius: 10px;
         margin: 0 0 40px 0;
+        height: 236px;
         &-title {
           font-size: 18px;
           margin: 0 0 10px 0;
