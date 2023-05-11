@@ -4,13 +4,13 @@
     <div class='main-layout'>
       <WrapperLayout
         :class-list-for-height="['price-title', 'button', 'menu']"
-        padding='20px 10px'
+        padding='20px 0 0 0'
       >
         <template #content>
           <div
             v-for='item in dictPrice'
             :key='item.id'
-            class='price-city'>
+            class='price-city main-layout-parent'>
             <p class='price-city-name'>{{ item.city }}</p>
             <div
               v-for='(type, index) in item.type'
@@ -31,7 +31,7 @@
           </div>
         </template>
       </WrapperLayout>
-      <Button text='Оставить заявку'  @onClick='openFormRequest(true)' />
+      <Button margin='30px 0 35px 0' text='Оставить заявку'  @onClick='openFormRequest(true)' />
     </div>
     <!-- Нижнее меню для вызова формы   -->
     <LayoutToTop @updateActive='openFormRequest' :active='isForm'>

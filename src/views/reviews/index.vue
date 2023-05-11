@@ -3,15 +3,13 @@
   <div class='main-layout'>
     <WrapperLayout
       :class-list-for-height="['reviews-title', 'button', 'menu']"
-      background-color='transparent'
-      border-radius='10px'
-      padding='12px 16px'
+      padding='20px 0'
     >
       <template #content>
         <Card v-for='review in reviews' :key='review.id' :item='review'/>
       </template>
     </WrapperLayout>
-    <Button text='Отправить отзыв' @onClick='openFormRequest(true)'/>
+    <Button margin='30px 0 35px 0' text='Отправить отзыв' @onClick='openFormRequest(true)'/>
   </div>
   <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
     <template #content>

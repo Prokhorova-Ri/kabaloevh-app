@@ -1,5 +1,5 @@
 <template>
-  <section v-if='item' class='card-review'>
+  <section v-if='item' class='card-review main-layout-parent'>
     <div class='card-review-stars'>
       <img
         v-for='(index) in item.stars.user'
@@ -37,8 +37,8 @@ export default {
 <style lang='scss' scoped>
   .card-review {
     border-radius: 10px;
-    padding: 11px 0;
-    background: rgba(255, 255, 255, 0.8);
+    //padding: 11px 0;
+    //background: rgba(255, 255, 255, 0.8);
     position: relative;
     margin: 0 0 23px 0;
     &:last-child {

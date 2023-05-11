@@ -48,7 +48,7 @@ export default {
   .button {
     border: none;
     width: 100%;
-    padding: 13px 0;
+    padding: 18px 0;
     //background: $btnbg;
     background: #4f9cf9;
     color: white;

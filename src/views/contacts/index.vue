@@ -2,14 +2,11 @@
   <h1 class='contacts-title main-title'>Контакты</h1>
   <div class='main-layout'>
     <WrapperLayout
-      :class-list-for-height="['contacts-title', 'menu']"
-      background-color='transparent'
-      border-radius='0px'
-      display='flex'
+      :class-list-for-height="['contacts-title', 'menu', 'social-links']"
       padding='20px 0'
     >
       <template #content>
-        <div class='contacts-content-work'>
+        <div class='contacts-content-work main-layout-parent'>
           <p class='contacts-content-work-title'>Часы работы</p>
           <div
             v-for='item in dict'
@@ -24,11 +21,11 @@
           </div>
         </div>
         <div class='contacts-content-map'>
-          <LeafletMap border-radius='10px' height="360px" />
+          <LeafletMap border-radius='10px' height="280px" />
         </div>
-        <SocialLinks />
       </template>
     </WrapperLayout>
+    <SocialLinks />
   </div>
 </template>
 
@@ -70,8 +67,8 @@ export default {
     }
     &-content {
       &-work {
-        background-color: transparent;
-        border-radius: 10px;
+        //background-color: transparent;
+        //border-radius: 10px;
         margin: 0 0 40px 0;
         &-title {
           font-size: 18px;

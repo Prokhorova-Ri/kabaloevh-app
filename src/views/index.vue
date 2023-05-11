@@ -4,12 +4,9 @@
     <div class='main-layout'>
       <WrapperLayout
         :class-list-for-height="['home-title', 'button', 'menu']"
-        padding='0 10px'
-        display='flex'
-        justify-content='space-around'
       >
         <template #content>
-          <div class='home-filter'>
+          <div class='home-filter main-layout-parent'>
             <p class='home-filter-title'>Расчитать стоимость</p>
             <div class='home-filter-input'>
               <VSelect
@@ -35,7 +32,7 @@
               Рассчет стоимости: {{ select.price.name.toLocaleString() }} руб
             </div>
           </div>
-          <div class='home-offer'>
+          <div class='home-offer main-layout-parent'>
             <div class='home-offer-item'>
               <img src='/src/assets/images/icons/check.svg'>
               <p class='home-offer-item-title'>Выезд мастера в удобное время и место.</p>
@@ -51,7 +48,7 @@
           </div>
         </template>
       </WrapperLayout>
-      <Button margin='30px 0' :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
+      <Button margin='30px 0 35px 0' :simple='isForm' text='Получить скидку' @onClick='openFormRequest(true)'/>
     </div>
     <LayoutToTop @updateActive='openFormRequest' :active='isForm'>
       <template #content>
@@ -129,12 +126,6 @@ export default {
     color: white;
   }
   &-filter {
-    //padding: 39px 0;
-    background: #fbfcf6;
-    //background: rgba(131, 134, 214, 0.8);
-    //box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    //margin: 0 0 40px 0;
     &-title {
       font-weight: 600;
       font-size: 20px;
@@ -151,8 +142,6 @@ export default {
   }
   &-offer {
     background: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    padding: 11px 0;
     display: flex;
     flex-direction: column;
     gap: 15px;

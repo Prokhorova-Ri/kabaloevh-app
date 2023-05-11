@@ -39,6 +39,7 @@ export default defineComponent({
     &-links {
       display: flex;
       justify-content: space-between;
+      padding: 10px 0 50px 0;
       &-item {
         display: flex;
         justify-content: center;
