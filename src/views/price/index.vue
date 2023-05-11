@@ -42,7 +42,7 @@
           padding='10px 15px'
         >
           <template #content>
-<!--            <FormRequestApplicationSale />-->
+            <FormRequestApplicationSale />
           </template>
         </WrapperLayout>
       </template>
