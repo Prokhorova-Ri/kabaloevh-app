@@ -40,14 +40,14 @@ export default {
   border-radius: 10px;
   border: none;
   margin: 0 0 8px 0;
-  font-size: 14px;
+  font-size: 16px;
   height: 150px;
   &:focus {
     outline: none;
   }
   &-error {
-    font-size: 14px;
-    margin: 2px 0 10px 0;
+    font-size: 15px;
+    margin: 2px 0 10px 10px;
     color: #ce4040;
   }
 }

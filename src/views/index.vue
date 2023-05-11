@@ -54,9 +54,9 @@
       <template #content>
         <WrapperLayout
           :class-list-for-height="['select-params', -'layout-to-top-close']"
-          background-color='#f5f5f5'
-          border-radius='10px 10px 0 0'
-          padding='20px 15px'
+          background-color='white'
+          padding='10px 15px'
+          border-radius='20px'
         >
           <template #content>
             <div style='margin: 0 0 20px 0'>

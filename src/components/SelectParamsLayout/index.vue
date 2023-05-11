@@ -1,5 +1,5 @@
 <template>
-  <div class='select-params'>
+  <div class='select-params main-layout-parent'>
       <h2 class='select-params-title'>Заявка на услугу:</h2>
       <div
         v-for='(item, index) in Object.values(selectFiltersList)'
@@ -44,10 +44,11 @@ export default {
 
 <style lang='scss' scoped>
   .select-params {
-    padding: 15px 10px 15px 10px;
-    background: rgba(131, 134, 214, 0.8);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    //padding: 15px 10px 15px 10px;
+    //background: rgba(131, 134, 214, 0.8);
+    //box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    margin: 20px 0 10px 0;
     &-wrapper {
       display: flex;
       justify-content: space-between;

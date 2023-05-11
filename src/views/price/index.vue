@@ -39,7 +39,7 @@
         <WrapperLayout
           :class-list-for-height="['form', -'layout-to-top-close']"
           background-color='white'
-          border-radius='0'
+          border-radius='20px'
           padding='10px 15px'
         >
           <template #content>

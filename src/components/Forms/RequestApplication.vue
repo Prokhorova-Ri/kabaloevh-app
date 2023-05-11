@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent='sendFormApplication' class='form'>
+  <form @submit.prevent='sendFormApplication' class='form main-layout-parent'>
+    <p class='form-title'>Заполните форму:</p>
     <div
       v-for='(item, index) in useSchemaForm'
       :key='index'
@@ -9,8 +10,8 @@
         :schema='item'
       />
     </div>
-    <Button margin='10px 0 0 0px' text='Отправить'/>
   </form>
+  <Button margin='10px 0 25px 0px' text='Отправить'/>
 </template>
 
 <script>

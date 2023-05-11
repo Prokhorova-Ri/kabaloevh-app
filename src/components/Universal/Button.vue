@@ -53,7 +53,7 @@ export default {
     background: #4f9cf9;
     color: white;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-radius: 20px;
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
