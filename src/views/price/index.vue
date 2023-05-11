@@ -40,7 +40,7 @@
           :class-list-for-height="['form', -'layout-to-top-close']"
           background-color='white'
           border-radius='20px'
-          padding='10px 15px'
+          padding='20px 15px 10px 15px'
         >
           <template #content>
             <FormRequestApplicationSale />

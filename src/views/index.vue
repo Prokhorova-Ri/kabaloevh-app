@@ -55,7 +55,7 @@
         <WrapperLayout
           :class-list-for-height="['select-params', -'layout-to-top-close']"
           background-color='white'
-          padding='10px 15px'
+          padding='20px 15px 10px 15px'
           border-radius='20px'
         >
           <template #content>
@@ -144,6 +144,8 @@ export default {
     background: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
+    height: 208px;
+    justify-content: inherit;
     gap: 15px;
     &-item {
       display: grid;
